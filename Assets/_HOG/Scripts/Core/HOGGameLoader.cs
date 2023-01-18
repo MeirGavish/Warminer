@@ -10,5 +10,6 @@ public class HOGGameLoader : HOGMonoBehaviour
     {
         new HOGManager();
         Destroy(this.gameObject);
+        //Shahar Bar
     }
 }
