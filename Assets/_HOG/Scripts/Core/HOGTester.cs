@@ -1,12 +1,16 @@
+using HOG.Core;
 using UnityEngine;
 
-public class HOGTester : HOGMonoBehaviour
+namespace HOG.Test
 {
-    private void Update()
+    public class HOGTester : HOGMonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        private void Update()
         {
-            Debug.Log(Manager.GetNumber());
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log(Manager.GetNumber());
+            }
         }
     }
 }
