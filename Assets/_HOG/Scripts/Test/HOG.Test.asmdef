@@ -1,0 +1,16 @@
+{
+    "name": "HOG.Test",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7bcafaa2b399f4b49980481050527476"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
