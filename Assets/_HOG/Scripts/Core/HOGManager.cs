@@ -1,3 +1,4 @@
+
 namespace HOG.Core
 {
     public class HOGManager
@@ -10,11 +11,6 @@ namespace HOG.Core
             {
                 Instance = this;
             }
-        }
-
-        public int GetNumber()
-        {
-            return 3;
         }
     }
 }
