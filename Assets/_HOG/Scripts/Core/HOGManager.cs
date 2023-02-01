@@ -6,6 +6,8 @@ namespace HOG.Core
         public static HOGManager Instance;
 
         public HOGEventsManager EventsManager;
+        public HOGFactoryManager FactoryManager;
+        public HOGPoolManager PoolManager;
         
         public HOGManager()
         {
@@ -17,6 +19,8 @@ namespace HOG.Core
             Instance = this;
 
             EventsManager = new HOGEventsManager();
+            FactoryManager = new HOGFactoryManager();
+            PoolManager = new HOGPoolManager();
         }
     }
 }
