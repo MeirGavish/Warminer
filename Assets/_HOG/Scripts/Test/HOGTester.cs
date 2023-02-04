@@ -6,22 +6,15 @@ namespace HOG.Test
 {
     public class HOGTester : HOGMonoBehaviour
     {
-        private HOGEvent onGameStart;
-
         private void Start()
         {
-            onGameStart = new HOGEvent
-            {
-                eventName = "game_start_event",
-                eventAction = OnGameStart
-            };
             
-            AddListener(onGameStart);
+            AddListener("game_start_event", OnGameStart);
         }
 
         private void OnDestroy()
         {
-            RemoveListener(onGameStart);
+            RemoveListener("game_start_event", OnGameStart);
         }
 
         private void OnGameStart(object obj)
