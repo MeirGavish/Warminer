@@ -6,64 +6,53 @@ namespace HOG.Test
 {
     public class HOGTester : HOGMonoBehaviour
     {
-        private void Update()
+        private HOGEvent onGameStart;
+
+        private void Start()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            onGameStart = new HOGEvent
             {
-            }
-            
-            var user = new UserID
-            {
-                name = "Shahar",
-                age = 29,
-                height = 171
+                eventName = "game_start_event",
+                eventAction = OnGameStart
             };
-
-            user.age++;
+            
+            AddListener(onGameStart);
         }
 
-
-        private StudentA _studentA = new StudentA();
-        
-        private void ShaharTeaching()
+        private void OnDestroy()
         {
-            _studentA.DoHomeWork(ShaharHappy);
+            RemoveListener(onGameStart);
         }
-        
-        private void ShaharHappy(string homeworkType)
+
+        private void OnGameStart(object obj)
         {
-            Debug.Log("Smile");
+            //Do something
         }
     }
-    
 
-    public class StudentA : MonoBehaviour
+    public class HOGGameUI : MonoBehaviour
     {
-        public Action<string> onComplete;
-        
-        public void DoHomeWork(Action<string> onCompleteHW)
+        //Will be called from UI Button
+        public void OnStartPressed()
         {
-            onComplete = onCompleteHW;
-            Debug.Log("HomeWork Start");
+            HOGGameLogic.TryStartGame();
         }
+    }
 
-        private void FinishedHomeWork()
+    //Will be real system
+    public static class HOGGameLogic
+    {
+        public static bool isGameRunning = false;
+        public static void TryStartGame()
         {
-            onComplete.Invoke("dsdads");
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (isGameRunning)
             {
-                FinishedHomeWork();
+                return;
             }
+
+            isGameRunning = true;
+            
+            HOGManager.Instance.EventsManager.InvokeEvent("game_start_event", null);
         }
-    }
-    public struct UserID
-    {
-        public string name;
-        public int age;
-        public float height;
     }
 }
