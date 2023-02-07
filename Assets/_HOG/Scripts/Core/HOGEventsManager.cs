@@ -3,37 +3,42 @@ using System.Collections.Generic;
 
 namespace HOG.Core
 {
+    public enum HOGEventType
+    {
+        GameStartEvent,
+        GainedMetal
+    }
     public class HOGEventsManager
     {
-        private Dictionary<string, List<Action<object>>> activeListeners = new();
+        private Dictionary<HOGEventType, List<Action<object>>> activeListeners = new();
 
-        public void AddListener(string eventName, Action<object> onGameStart)
+        public void AddListener(HOGEventType gameEvent, Action<object> eventAction)
         {
-            if (activeListeners.TryGetValue(eventName, out var listOfEvents))
+            if (activeListeners.TryGetValue(gameEvent, out var listOfEvents))
             {
-                listOfEvents.Add(onGameStart);
+                listOfEvents.Add(eventAction);
                 return;
             }
             
-            activeListeners.Add(eventName, new List<Action<object>>{onGameStart});
+            activeListeners.Add(gameEvent, new List<Action<object>>{eventAction});
         }
         
-        public void RemoveListener(string eventName, Action<object> onGameStart)
+        public void RemoveListener(HOGEventType gameEvent, Action<object> eventAction)
         {
-            if (activeListeners.TryGetValue(eventName, out var listOfEvents))
+            if (activeListeners.TryGetValue(gameEvent, out var listOfEvents))
             {
-                listOfEvents.Remove(onGameStart);
+                listOfEvents.Remove(eventAction);
 
                 if (listOfEvents.Count <= 0)
                 {
-                    activeListeners.Remove(eventName);
+                    activeListeners.Remove(gameEvent);
                 }
             }
         }
         
-        public void InvokeEvent(string eventName, object obj)
+        public void InvokeEvent(HOGEventType gameEvent, object obj)
         {
-            if (activeListeners.TryGetValue(eventName, out var listOfEvents))
+            if (activeListeners.TryGetValue(gameEvent, out var listOfEvents))
             {
                 //TODO: Do For Loop
                 foreach (var action in listOfEvents)
@@ -46,8 +51,7 @@ namespace HOG.Core
 
     public class HOGEvent
     {
-        public string eventName;
+        public HOGEventType gameEvent;
         public Action<object> eventAction;
-
     }
 }
