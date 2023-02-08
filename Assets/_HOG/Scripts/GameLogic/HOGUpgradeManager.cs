@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HOG.Core;
+using UnityEngine;
 
 namespace HOG.GameLogic
 {
@@ -19,19 +21,26 @@ namespace HOG.GameLogic
                 HOGUpgradeableLevelData levelData = upgradeableConfig.UpgradableLevelData[upgradeable.CurrentLevel + 1];
                 int amountToReduce = levelData.CoinsNeeded;
                 ScoreTags coinsType = levelData.CurrencyTag;
-                //TODO: Score Reduce
-                
-                upgradeable.CurrentLevel++;
+
+                if (HOGGameLogic.Instance.ScoreManager.TryUseScore(coinsType, amountToReduce))
+                {
+                    upgradeable.CurrentLevel++;
+                    HOGManager.Instance.EventsManager.InvokeEvent(HOGEventNames.OnUpgraded, typeID);
+                }
+                else
+                {
+                    Debug.LogError($"UpgradeItemByID {typeID.ToString()} tried upgrade and there is no enough");
+                }
             }
         }
 
-        private HOGUpgradeableConfig GetHogUpgradeableConfigByID(UpgradeablesTypeID typeID)
+        public HOGUpgradeableConfig GetHogUpgradeableConfigByID(UpgradeablesTypeID typeID)
         {
             HOGUpgradeableConfig upgradeableConfig = UpgradeConfig.UpgradeableConfigs.FirstOrDefault(upgradable => upgradable.upgradableTypeID == typeID);
             return upgradeableConfig;
         }
 
-        private HOGUpgradeableData GetUpgradeableByID(UpgradeablesTypeID typeID)
+        public HOGUpgradeableData GetUpgradeableByID(UpgradeablesTypeID typeID)
         {
             var upgradeable = PlayerUpgradeInventoryData.Upgradeables.FirstOrDefault(x => x.upgradableTypeID == typeID);
             return upgradeable;

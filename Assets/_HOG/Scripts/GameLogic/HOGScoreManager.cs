@@ -15,7 +15,6 @@ namespace HOG.GameLogic
                 return true;
             }
 
-            SetScoreByTag(tag);
             return false;
         }
 
@@ -35,7 +34,26 @@ namespace HOG.GameLogic
             {
                 SetScoreByTag(tag, amount);
             }
-        } 
+        }
+
+        public bool TryUseScore(ScoreTags scoreTag, int amountToReduce)
+        {
+            var score = 0;
+            var hasType = TryGetScoreByTag(scoreTag, ref score);
+            var hasEnough = false;
+            
+            if (hasType)
+            {
+                hasEnough = amountToReduce >= score;
+            }
+            
+            if (hasEnough)
+            {
+                ChangeScoreByTagByAmount(scoreTag, -amountToReduce);
+            }
+
+            return hasEnough;
+        }
     }
 
     public class HOGPlayerScoreData

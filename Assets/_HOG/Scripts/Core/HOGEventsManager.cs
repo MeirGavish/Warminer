@@ -47,6 +47,8 @@ namespace HOG.Core
     public enum HOGEventNames
     {
         OnScoreSet,
-        OnGameStart
+        OnGameStart,
+        OnUpgraded,
+        TriangleTaken
     }
 }
