@@ -5,9 +5,9 @@ namespace HOG.Core
 {
     public class HOGEventsManager
     {
-        private Dictionary<string, List<Action<object>>> activeListeners = new();
+        private Dictionary<HOGEventNames, List<Action<object>>> activeListeners = new();
 
-        public void AddListener(string eventName, Action<object> onGameStart)
+        public void AddListener(HOGEventNames eventName, Action<object> onGameStart)
         {
             if (activeListeners.TryGetValue(eventName, out var listOfEvents))
             {
@@ -18,7 +18,7 @@ namespace HOG.Core
             activeListeners.Add(eventName, new List<Action<object>>{onGameStart});
         }
         
-        public void RemoveListener(string eventName, Action<object> onGameStart)
+        public void RemoveListener(HOGEventNames eventName, Action<object> onGameStart)
         {
             if (activeListeners.TryGetValue(eventName, out var listOfEvents))
             {
@@ -31,7 +31,7 @@ namespace HOG.Core
             }
         }
         
-        public void InvokeEvent(string eventName, object obj)
+        public void InvokeEvent(HOGEventNames eventName, object obj)
         {
             if (activeListeners.TryGetValue(eventName, out var listOfEvents))
             {
@@ -43,11 +43,10 @@ namespace HOG.Core
             }
         }
     }
-
-    public class HOGEvent
+        
+    public enum HOGEventNames
     {
-        public string eventName;
-        public Action<object> eventAction;
-
+        OnScoreSet,
+        OnGameStart
     }
 }
