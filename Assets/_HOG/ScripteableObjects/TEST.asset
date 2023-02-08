@@ -12,3 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea98d6e1e2cb4d20a4bb84cdfc23c22d, type: 3}
   m_Name: TEST
   m_EditorClassIdentifier: 
+  ConfigTest:
+    UpgradeableConfigs:
+    - upgradableTypeID: 0
+      UpgradableLevelData:
+      - Level: 0
+        CoinsNeeded: 5
+        CurrencyTag: 2
+        ArtItem: Cookie1
+        Power: 10
+      - Level: 2
+        CoinsNeeded: 50
+        CurrencyTag: 2
+        ArtItem: Cookie2
+        Power: 20

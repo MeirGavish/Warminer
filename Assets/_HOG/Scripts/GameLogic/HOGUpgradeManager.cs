@@ -6,16 +6,16 @@ namespace HOG.GameLogic
 {
     public class HOGUpgradeManager
     {
-        public HOGPlayerUpgradeData PlayerUpgradeData; //Player Saved Data
+        public HOGPlayerUpgradeInventoryData PlayerUpgradeInventoryData; //Player Saved Data
         public HOGUpgradeManagerConfig UpgradeConfig; //From cloud
 
-        public void UpgradeItemByID(UpgradeablesID id)
+        public void UpgradeItemByID(UpgradeablesTypeID typeID)
         {
-            var upgradeable = GetUpgradeableByID(id);
+            var upgradeable = GetUpgradeableByID(typeID);
 
             if (upgradeable != null)
             {
-                var upgradeableConfig = GetHogUpgradeableConfigByID(id);
+                var upgradeableConfig = GetHogUpgradeableConfigByID(typeID);
                 HOGUpgradeableLevelData levelData = upgradeableConfig.UpgradableLevelData[upgradeable.CurrentLevel + 1];
                 int amountToReduce = levelData.CoinsNeeded;
                 ScoreTags coinsType = levelData.CurrencyTag;
@@ -25,26 +25,25 @@ namespace HOG.GameLogic
             }
         }
 
-        private HOGUpgradeableConfig GetHogUpgradeableConfigByID(UpgradeablesID id)
+        private HOGUpgradeableConfig GetHogUpgradeableConfigByID(UpgradeablesTypeID typeID)
         {
-            HOGUpgradeableConfig upgradeableConfig = UpgradeConfig.UpgradeableConfigs.FirstOrDefault(x => x.UpgradableID == id);
+            HOGUpgradeableConfig upgradeableConfig = UpgradeConfig.UpgradeableConfigs.FirstOrDefault(upgradable => upgradable.upgradableTypeID == typeID);
             return upgradeableConfig;
         }
 
-        private HOGUpgradeableData GetUpgradeableByID(UpgradeablesID id)
+        private HOGUpgradeableData GetUpgradeableByID(UpgradeablesTypeID typeID)
         {
-            var upgradeable = PlayerUpgradeData.Upgradeables.FirstOrDefault(x => x.UpgradableID == id);
+            var upgradeable = PlayerUpgradeInventoryData.Upgradeables.FirstOrDefault(x => x.upgradableTypeID == typeID);
             return upgradeable;
         }
     }
     
     
-
     //Per Player Owned Item
     [Serializable]
     public class HOGUpgradeableData
     {
-        public UpgradeablesID UpgradableID;
+        public UpgradeablesTypeID upgradableTypeID;
         public int CurrentLevel;
     }
 
@@ -63,7 +62,7 @@ namespace HOG.GameLogic
     [Serializable]
     public class HOGUpgradeableConfig
     {
-        public UpgradeablesID UpgradableID;
+        public UpgradeablesTypeID upgradableTypeID;
         public List<HOGUpgradeableLevelData> UpgradableLevelData;
     }
 
@@ -76,14 +75,15 @@ namespace HOG.GameLogic
 
     //All player saved data
     [Serializable]
-    public class HOGPlayerUpgradeData
+    public class HOGPlayerUpgradeInventoryData
     {
         public List<HOGUpgradeableData> Upgradeables;
     }
 
     [Serializable]
-    public enum UpgradeablesID
+    public enum UpgradeablesTypeID
     {
-        Upgradable1
+        Upgradable1 = 0,
+        Upgradeable2 = 1
     }
 }
