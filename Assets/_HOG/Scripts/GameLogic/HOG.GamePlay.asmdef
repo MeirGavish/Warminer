@@ -1,9 +1,8 @@
 {
-    "name": "HOG.Test",
+    "name": "HOG.GamePlay",
     "rootNamespace": "",
     "references": [
-        "GUID:7bcafaa2b399f4b49980481050527476",
-        "GUID:29a9b5755c8644b20879516599d57227"
+        "GUID:7bcafaa2b399f4b49980481050527476"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
