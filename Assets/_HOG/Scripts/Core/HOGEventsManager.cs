@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace HOG.Core
 {
-    public enum HOGEventType
+    public enum HOGEventNames
     {
-        GameStartEvent,
-        GainedMetal
+        OnGameStart,
+        CurrencyChanged
     }
     public class HOGEventsManager
     {
-        private Dictionary<HOGEventType, List<Action<object>>> activeListeners = new();
+        private Dictionary<HOGEventNames, List<Action<object>>> activeListeners = new();
 
-        public void AddListener(HOGEventType gameEvent, Action<object> eventAction)
+        public void AddListener(HOGEventNames gameEvent, Action<object> eventAction)
         {
             if (activeListeners.TryGetValue(gameEvent, out var listOfEvents))
             {
@@ -23,7 +23,7 @@ namespace HOG.Core
             activeListeners.Add(gameEvent, new List<Action<object>>{eventAction});
         }
         
-        public void RemoveListener(HOGEventType gameEvent, Action<object> eventAction)
+        public void RemoveListener(HOGEventNames gameEvent, Action<object> eventAction)
         {
             if (activeListeners.TryGetValue(gameEvent, out var listOfEvents))
             {
@@ -36,7 +36,7 @@ namespace HOG.Core
             }
         }
         
-        public void InvokeEvent(HOGEventType gameEvent, object obj)
+        public void InvokeEvent(HOGEventNames gameEvent, object obj)
         {
             if (activeListeners.TryGetValue(gameEvent, out var listOfEvents))
             {
@@ -51,7 +51,7 @@ namespace HOG.Core
 
     public class HOGEvent
     {
-        public HOGEventType gameEvent;
+        public HOGEventNames gameEvent;
         public Action<object> eventAction;
     }
 }

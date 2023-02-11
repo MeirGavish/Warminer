@@ -10,6 +10,6 @@ public class ManualMine : HOGMonoBehaviour
 
     public void ClickMine()
     {
-        InvokeEvent(HOGEventType.GainedMetal, metalPerClick);
+        InvokeEvent(HOGEventNames.CurrencyChanged, metalPerClick);
     }
 }

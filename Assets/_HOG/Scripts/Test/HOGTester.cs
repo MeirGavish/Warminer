@@ -9,12 +9,12 @@ namespace HOG.Test
         private void Start()
         {
             
-            AddListener(HOGEventType.GameStartEvent, OnGameStart);
+            AddListener(HOGEventNames.OnGameStart, OnGameStart);
         }
 
         private void OnDestroy()
         {
-            RemoveListener(HOGEventType.GameStartEvent, OnGameStart);
+            RemoveListener(HOGEventNames.OnGameStart, OnGameStart);
         }
 
         private void OnGameStart(object obj)
@@ -45,7 +45,7 @@ namespace HOG.Test
 
             isGameRunning = true;
             
-            HOGManager.Instance.EventsManager.InvokeEvent(HOGEventType.GameStartEvent, null);
+            HOGManager.Instance.EventsManager.InvokeEvent(HOGEventNames.OnGameStart, null);
         }
     }
 }

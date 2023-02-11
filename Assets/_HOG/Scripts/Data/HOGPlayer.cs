@@ -19,12 +19,12 @@ namespace HOG.Data
 
         private void OnEnable()
         {
-            AddListener(HOGEventType.GainedMetal, AddMetal);
+            AddListener(HOGEventNames.CurrencyChanged, AddMetal);
         }
 
         private void OnDisable()
         {
-            RemoveListener(HOGEventType.GainedMetal, AddMetal);
+            RemoveListener(HOGEventNames.CurrencyChanged, AddMetal);
         }
 
     }

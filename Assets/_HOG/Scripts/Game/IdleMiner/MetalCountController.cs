@@ -15,12 +15,12 @@ public class MetalCountController : HOGMonoBehaviour
     {
         // TODO: Should be accessible differently
         player = FindObjectOfType<HOG.Data.HOGPlayer>();
-        AddListener(HOGEventType.GainedMetal, updateMetalCountAction);
+        AddListener(HOGEventNames.CurrencyChanged, updateMetalCountAction);
     }
 
     private void OnDisable()
     {
-        AddListener(HOGEventType.GainedMetal, updateMetalCountAction);
+        AddListener(HOGEventNames.CurrencyChanged, updateMetalCountAction);
     }
 
     void updateMetalCount(int amount)
