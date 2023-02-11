@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using HOG.Core;
 using UnityEngine;
 
@@ -6,20 +7,37 @@ namespace HOG.Test
 {
     public class HOGTester : HOGMonoBehaviour
     {
+        private Queue<HOGPoolable> poolsables = new();
+
+        
         private void Start()
         {
-            
-            AddListener(HOGEventNames.OnGameStart, OnGameStart);
+           DontDestroyOnLoad(gameObject);
         }
 
         private void OnDestroy()
         {
-            RemoveListener(HOGEventNames.OnGameStart, OnGameStart);
         }
 
         private void OnGameStart(object obj)
         {
             //Do something
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                var triangle = Manager.PoolManager.GetPoolable("TrianglePool");
+                poolsables.Enqueue(triangle);
+            }
+
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                var triangle = poolsables.Dequeue();
+                Manager.PoolManager.ReturnPoolable(triangle);
+            }
+
         }
     }
 

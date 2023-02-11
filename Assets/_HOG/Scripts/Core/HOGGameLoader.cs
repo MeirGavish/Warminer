@@ -1,17 +1,30 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
 namespace HOG.Core
 {
     public class HOGGameLoader : HOGMonoBehaviour
     {
+        [SerializeField] private HOGGameLoaderBase gameLogicLoader;
+        
         private void Start()
         {
-            //TODO: User different Design Pattern
+            DontDestroyOnLoad(gameObject);
             Invoke("DelayStart", 0.1f);
         }
 
         private void DelayStart()
         {
-            new HOGManager();
-            Destroy(this.gameObject);
+            var manager = new HOGManager();
+            
+            manager.LoadManager(() =>
+            {
+                gameLogicLoader.StartLoad(() =>
+                {
+                    SceneManager.LoadScene(1);
+                    Destroy(gameObject);
+                });
+            });
         }
     }
 }

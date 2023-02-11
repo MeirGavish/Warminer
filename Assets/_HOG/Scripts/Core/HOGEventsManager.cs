@@ -36,7 +36,7 @@ namespace HOG.Core
             }
         }
         
-        public void InvokeEvent(HOGEventNames gameEvent, object obj)
+        public void InvokeEvent(HOGEventNames eventName, object obj)
         {
             if (activeListeners.TryGetValue(gameEvent, out var listOfEvents))
             {
@@ -51,7 +51,8 @@ namespace HOG.Core
 
     public class HOGEvent
     {
-        public HOGEventNames gameEvent;
+        public string eventName;
         public Action<object> eventAction;
+
     }
 }

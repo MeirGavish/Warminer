@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/_HOG/Scenes/Loader.unity
+    guid: 1480d4c2c1f6644d397df6bb9cdc7445
+  - enabled: 1
+    path: Assets/_HOG/Scenes/MainGame.unity
+    guid: 358ee70a8150c4b79a18998c77c7cbcc
   m_configObjects: {}
