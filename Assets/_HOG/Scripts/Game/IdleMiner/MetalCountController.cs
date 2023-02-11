@@ -5,31 +5,35 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class MetalCountController : HOGMonoBehaviour
+namespace HOG.GameLogic
 {
-    public TextMeshProUGUI metalText;
-    
-    HOG.Data.HOGPlayer player;
-
-    private void OnEnable()
+    public class MetalCountController : HOGMonoBehaviour
     {
-        // TODO: Should be accessible differently
-        player = FindObjectOfType<HOG.Data.HOGPlayer>();
-        AddListener(HOGEventNames.CurrencyChanged, updateMetalCountAction);
-    }
+        public TextMeshProUGUI metalText;
 
-    private void OnDisable()
-    {
-        AddListener(HOGEventNames.CurrencyChanged, updateMetalCountAction);
-    }
+        HOG.Data.HOGPlayer player;
 
-    void updateMetalCount(int amount)
-    {
-        metalText.text = "Metal: " + amount;
-    }
+        private void OnEnable()
+        {
+            // TODO: Should be accessible differently
+            player = FindObjectOfType<HOG.Data.HOGPlayer>();
+            AddListener(HOGEventNames.CurrencyChanged, updateMetalCountAction);
+        }
 
-    void updateMetalCountAction(object obj)
-    {
-        updateMetalCount(player.MetalCurrency);
+        private void OnDisable()
+        {
+            AddListener(HOGEventNames.CurrencyChanged, updateMetalCountAction);
+        }
+
+        void updateMetalCount(int amount)
+        {
+            metalText.text = "Metal: " + amount;
+        }
+
+        void updateMetalCountAction(object obj)
+        {
+            updateMetalCount(player.MetalCurrency);
+        }
     }
 }
+
