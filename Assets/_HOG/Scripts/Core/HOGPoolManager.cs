@@ -5,7 +5,7 @@ namespace HOG.Core
 {
     public class HOGPoolManager
     {
-        private Dictionary<string, HOGPool> Pools = new();
+        private Dictionary<PoolNames, HOGPool> Pools = new();
         
         private Transform rootPools;
 
@@ -13,6 +13,18 @@ namespace HOG.Core
         {
             rootPools = new GameObject().transform;
             Object.DontDestroyOnLoad(rootPools);
+        }
+        
+        public void InitPool(PoolNames poolName, int amount)
+        {
+            //List Of Originals 
+            //Linq where PoolNames == poolName
+        }
+        
+        public void InitPool(string resourceName, int amount, int maxAmount = 100)
+        {
+            var original = Resources.Load<HOGPoolable>(resourceName);
+            InitPool(original, amount,  maxAmount);
         }
         
         public void InitPool(HOGPoolable original, int amount, int maxAmount)
@@ -39,7 +51,7 @@ namespace HOG.Core
                 });
         }
 
-        public HOGPoolable GetPoolable(string poolName)
+        public HOGPoolable GetPoolable(PoolNames poolName)
         {
             if (Pools.TryGetValue(poolName, out HOGPool pool))
             {
@@ -76,7 +88,7 @@ namespace HOG.Core
         }
 
 
-        public void DestroyPool(string name)
+        public void DestroyPool(PoolNames name)
         {
             if (Pools.TryGetValue(name, out HOGPool pool))
             {
@@ -107,5 +119,12 @@ namespace HOG.Core
         public Queue<HOGPoolable> AvailablePoolables = new();
 
         public int MaxPoolables = 100;
+    }
+
+    public enum PoolNames
+    {
+        NA = -1,
+        ScoreToast = 0,
+        TrianglePool = 1
     }
 }

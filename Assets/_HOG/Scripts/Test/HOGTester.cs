@@ -28,7 +28,7 @@ namespace HOG.Test
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                var triangle = Manager.PoolManager.GetPoolable("TrianglePool");
+                var triangle = Manager.PoolManager.GetPoolable(PoolNames.TrianglePool);
                 poolsables.Enqueue(triangle);
             }
 
