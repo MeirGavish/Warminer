@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/_HOG/Scenes/Loader.unity
     guid: 1480d4c2c1f6644d397df6bb9cdc7445
   - enabled: 1
-    path: Assets/_HOG/Scenes/MainGame.unity
-    guid: 358ee70a8150c4b79a18998c77c7cbcc
+    path: Assets/_HOG/Scenes/IdleMiner.unity
+    guid: 15c0b5fe45452ff4b86a3db5562a9ba7
   m_configObjects: {}
