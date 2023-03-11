@@ -3,20 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 namespace HOG.GameLogic
 {
     public class MetalCountController : HOGMonoBehaviour
     {
-        public TextMeshProUGUI metalText;
+        //public TMPro.TextMeshProUGUI metalText;
 
-        HOG.Data.HOGPlayer player;
+        //HOG.Data.HOGPlayer player;
 
         private void OnEnable()
         {
             // TODO: Should be accessible differently
-            player = FindObjectOfType<HOG.Data.HOGPlayer>();
+            //player = FindObjectOfType<HOG.Data.HOGPlayer>();
             AddListener(HOGEventNames.CurrencyChanged, updateMetalCountAction);
         }
 
@@ -27,12 +26,12 @@ namespace HOG.GameLogic
 
         void updateMetalCount(int amount)
         {
-            metalText.text = "Metal: " + amount;
+            //metalText.text = "Metal: " + amount;
         }
 
         void updateMetalCountAction(object obj)
         {
-            updateMetalCount(player.MetalCurrency);
+            //updateMetalCount(player.MetalCurrency);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace HOG.GameLogic
     {
         public static HOGGameLogic Instance;
 
-        public HOGScoreManager ScoreManager;
+        public HOGCurrencyManager CurrencyManager;
         public HOGUpgradeManager UpgradeManager;
         
         public HOGGameLogic()
@@ -22,7 +22,7 @@ namespace HOG.GameLogic
 
         public void LoadManager(Action onComplete)
         {
-            ScoreManager = new HOGScoreManager();
+            CurrencyManager = new HOGCurrencyManager();
             UpgradeManager = new HOGUpgradeManager();
             
             onComplete.Invoke();

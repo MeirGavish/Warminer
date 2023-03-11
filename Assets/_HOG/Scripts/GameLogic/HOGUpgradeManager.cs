@@ -20,16 +20,16 @@ namespace HOG.GameLogic
                 var upgradeableConfig = GetHogUpgradeableConfigByID(typeID);
                 HOGUpgradeableLevelData levelData = upgradeableConfig.UpgradableLevelData[upgradeable.CurrentLevel + 1];
                 int amountToReduce = levelData.CoinsNeeded;
-                ScoreTags coinsType = levelData.CurrencyTag;
+                CurrencyTypes coinsType = levelData.CurrencyTag;
 
-                if (HOGGameLogic.Instance.ScoreManager.TryUseScore(coinsType, amountToReduce))
+                if (HOGGameLogic.Instance.CurrencyManager.TryUseCurrency(coinsType, amountToReduce))
                 {
                     upgradeable.CurrentLevel++;
                     HOGManager.Instance.EventsManager.InvokeEvent(HOGEventNames.OnUpgraded, typeID);
                 }
                 else
                 {
-                    Debug.LogError($"UpgradeItemByID {typeID.ToString()} tried upgrade and there is no enough");
+                    Debug.LogError($"UpgradeItemByID {typeID.ToString()} tried upgrade and there is not enough");
                 }
             }
         }
@@ -62,7 +62,7 @@ namespace HOG.GameLogic
     {
         public int Level;
         public int CoinsNeeded;
-        public ScoreTags CurrencyTag;
+        public CurrencyTypes CurrencyTag;
         public string ArtItem;
         public int Power;
     }
@@ -92,7 +92,6 @@ namespace HOG.GameLogic
     [Serializable]
     public enum UpgradeablesTypeID
     {
-        Upgradable1 = 0,
-        Upgradeable2 = 1
+        ClickPowerUpgrade = 0
     }
 }

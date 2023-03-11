@@ -28,7 +28,7 @@ namespace HOG.GameLogic
             }
         }
 
-        public bool TryUseScore(CurrencyTypes currencyType, int amountToReduce)
+        public bool TryUseCurrency(CurrencyTypes currencyType, int amountToReduce)
         {
             var currency = 0;
             var hasType = TryGetCurrencyByType(currencyType, out currency);

@@ -6,7 +6,8 @@ namespace HOG.Core
     public enum HOGEventNames
     {
         OnGameStart,
-        CurrencyChanged
+        CurrencyChanged,
+        OnUpgraded
     }
     public class HOGEventsManager
     {
