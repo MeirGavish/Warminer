@@ -38,9 +38,9 @@ namespace HOG.GameLogic
                 var upgradeableConfig = GetHogUpgradeableConfigByID(typeID);
                 HOGUpgradeableLevelData levelData = upgradeableConfig.UpgradableLevelData[upgradeable.CurrentLevel + 1];
                 int amountToReduce = levelData.CoinsNeeded;
-                ScoreTags coinsType = levelData.CurrencyTag;
+                CurrencyTypes coinsType = levelData.CurrencyTag;
 
-                if (HOGGameLogic.Instance.ScoreManager.TryUseScore(coinsType, amountToReduce))
+                if (HOGGameLogic.Instance.CurrencyManager.TryUseScore(coinsType, amountToReduce))
                 {
                     upgradeable.CurrentLevel++;
                     HOGManager.Instance.EventsManager.InvokeEvent(HOGEventNames.OnUpgraded, typeID);
@@ -112,28 +112,28 @@ namespace HOG.GameLogic
                     {
                         Level = 1,
                         CoinsNeeded = 0,
-                        CurrencyTag = ScoreTags.MainScore,
+                        CurrencyTag = CurrencyTypes.Metal,
                         Power = 1
                     },
                     new HOGUpgradeableLevelData
                     {
                         Level = 2,
                         CoinsNeeded = 50,
-                        CurrencyTag = ScoreTags.MainScore,
+                        CurrencyTag = CurrencyTypes.Metal,
                         Power = 15
                     },
                     new HOGUpgradeableLevelData
                     {
                         Level = 3,
                         CoinsNeeded = 1500,
-                        CurrencyTag = ScoreTags.MainScore,
+                        CurrencyTag = CurrencyTypes.Metal,
                         Power = 40
                     },
                     new HOGUpgradeableLevelData
                     {
                         Level = 4,
                         CoinsNeeded = 8000,
-                        CurrencyTag = ScoreTags.MainScore,
+                        CurrencyTag = CurrencyTypes.Metal,
                         Power = 100
                     },
                     
