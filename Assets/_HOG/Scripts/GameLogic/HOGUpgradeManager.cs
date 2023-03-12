@@ -40,7 +40,7 @@ namespace HOG.GameLogic
                 int amountToReduce = levelData.CoinsNeeded;
                 CurrencyTypes coinsType = levelData.CurrencyTag;
 
-                if (HOGGameLogic.Instance.CurrencyManager.TryUseScore(coinsType, amountToReduce))
+                if (HOGGameLogic.Instance.CurrencyManager.TryUseCurrency(coinsType, amountToReduce))
                 {
                     upgradeable.CurrentLevel++;
                     HOGManager.Instance.EventsManager.InvokeEvent(HOGEventNames.OnUpgraded, typeID);
