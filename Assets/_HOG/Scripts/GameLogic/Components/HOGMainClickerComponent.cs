@@ -20,7 +20,7 @@ namespace  HOG.GameLogic
             //TODO: Convert level to power from config
             var power = GameLogic.UpgradeManager.GetPowerByIDAndLevel(clickUpgradeData.upgradableTypeID, clickUpgradeData.CurrentLevel);
             
-            GameLogic.ScoreManager.ChangeScoreByTagByAmount(ScoreTags.MainScore, power);
+            GameLogic.CurrencyManager.ChangeCurrencyByAmountByType(CurrencyTypes.MetalCurrency, power);
 
             var scoreText = (HOGTweenScoreComponent) Manager.PoolManager.GetPoolable(PoolNames.ScoreToast);
             scoreText.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward * 5;

@@ -14,19 +14,19 @@ namespace  HOG.GameLogic
         
         private void OnEnable()
         {
-            AddListener(HOGEventNames.OnScoreSet, OnScoreSet);
+            AddListener(HOGEventNames.OnCurrencyChanged, OnCurrencyChanged);
         }
 
         private void OnDisable()
         {
-            RemoveListener(HOGEventNames.OnScoreSet, OnScoreSet);
+            RemoveListener(HOGEventNames.OnCurrencyChanged, OnCurrencyChanged);
         }
 
-        private void OnScoreSet(object obj)
+        private void OnCurrencyChanged(object obj)
         {
-            var scoreEventData = ((ScoreTags, int)) obj;
+            var scoreEventData = ((CurrencyTypes, int)) obj;
 
-            if (scoreEventData.Item1 == ScoreTags.MainScore)
+            if (scoreEventData.Item1 == CurrencyTypes.MetalCurrency)
             {
                 ShakeCamera();
             }

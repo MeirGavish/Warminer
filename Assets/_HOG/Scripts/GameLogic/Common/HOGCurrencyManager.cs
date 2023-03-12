@@ -14,7 +14,7 @@ namespace HOG.GameLogic
 
         public void SetCurrencyByType(CurrencyTypes type, int amount = 0)
         {
-            HOGManager.Instance.EventsManager.InvokeEvent(HOGEventNames.CurrencyChanged, (type, amount));
+            HOGManager.Instance.EventsManager.InvokeEvent(HOGEventNames.OnCurrencyChanged, (type, amount));
         }
         public void ChangeCurrencyByAmountByType(CurrencyTypes type, int amount = 0)
         {
@@ -55,8 +55,8 @@ namespace HOG.GameLogic
 
     public enum CurrencyTypes
     {
-        Metal,
-        Coins
+        MetalCurrency,
+        CoinsCurrency
     }
 }
 

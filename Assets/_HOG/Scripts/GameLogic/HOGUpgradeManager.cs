@@ -112,28 +112,28 @@ namespace HOG.GameLogic
                     {
                         Level = 1,
                         CoinsNeeded = 0,
-                        CurrencyTag = CurrencyTypes.Metal,
+                        CurrencyTag = CurrencyTypes.MetalCurrency,
                         Power = 1
                     },
                     new HOGUpgradeableLevelData
                     {
                         Level = 2,
                         CoinsNeeded = 50,
-                        CurrencyTag = CurrencyTypes.Metal,
+                        CurrencyTag = CurrencyTypes.MetalCurrency,
                         Power = 15
                     },
                     new HOGUpgradeableLevelData
                     {
                         Level = 3,
                         CoinsNeeded = 1500,
-                        CurrencyTag = CurrencyTypes.Metal,
+                        CurrencyTag = CurrencyTypes.MetalCurrency,
                         Power = 40
                     },
                     new HOGUpgradeableLevelData
                     {
                         Level = 4,
                         CoinsNeeded = 8000,
-                        CurrencyTag = CurrencyTypes.Metal,
+                        CurrencyTag = CurrencyTypes.MetalCurrency,
                         Power = 100
                     },
                     

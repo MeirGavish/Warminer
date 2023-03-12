@@ -18,7 +18,7 @@ namespace HOG.GameLogic
 
         public void OnMouseUpAsButton()
         {
-            GameLogic.CurrencyManager.ChangeCurrencyByAmountByType(CurrencyTypes.Metal, metalPerClick);
+            GameLogic.CurrencyManager.ChangeCurrencyByAmountByType(CurrencyTypes.MetalCurrency, metalPerClick);
         }
     }
 }

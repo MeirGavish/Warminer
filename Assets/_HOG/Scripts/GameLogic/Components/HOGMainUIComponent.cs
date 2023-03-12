@@ -14,22 +14,22 @@ namespace  HOG.GameLogic
         private void OnEnable()
         {
             var score = 0;
-            GameLogic.ScoreManager.TryGetScoreByTag(ScoreTags.MainScore, ref score);
+            GameLogic.CurrencyManager.TryGetCurrencyByType(CurrencyTypes.MetalCurrency, out score);
             scoreText.text = score.ToString("N0");
             
-            AddListener(HOGEventNames.OnScoreSet, OnScoreSet);
+            AddListener(HOGEventNames.OnCurrencyChanged, OnCurrencyChanged);
         }
 
         private void OnDisable()
         {
-            RemoveListener(HOGEventNames.OnScoreSet, OnScoreSet);
+            RemoveListener(HOGEventNames.OnCurrencyChanged, OnCurrencyChanged);
         }
 
-        private void OnScoreSet(object obj)
+        private void OnCurrencyChanged(object obj)
         {
-            var scoreEventData = ((ScoreTags, int)) obj;
+            var scoreEventData = ((CurrencyTypes, int)) obj;
 
-            if (scoreEventData.Item1 == ScoreTags.MainScore)
+            if (scoreEventData.Item1 == CurrencyTypes.MetalCurrency)
             {
                 scoreText.text = scoreEventData.Item2.ToString("N0");
             }

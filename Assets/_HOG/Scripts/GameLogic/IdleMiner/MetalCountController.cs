@@ -16,12 +16,12 @@ namespace HOG.GameLogic
         {
             // TODO: Should be accessible differently
             //player = FindObjectOfType<HOG.Data.HOGPlayer>();
-            AddListener(HOGEventNames.CurrencyChanged, updateMetalCountAction);
+            AddListener(HOGEventNames.OnCurrencyChanged, updateMetalCountAction);
         }
 
         private void OnDisable()
         {
-            AddListener(HOGEventNames.CurrencyChanged, updateMetalCountAction);
+            AddListener(HOGEventNames.OnCurrencyChanged, updateMetalCountAction);
         }
 
         void updateMetalCount(int amount)
