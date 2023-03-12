@@ -29,7 +29,7 @@ namespace  HOG.GameLogic
         {
             transform.localScale = scaleStart * Vector3.one;
             
-            scoreTMP.DOFade(fadeTarget, tweenTime).SetEase(fadeEase);
+            //scoreTMP.DOFade(fadeTarget, tweenTime).SetEase(fadeEase); // TODO: Extension
             transform.DOLocalMove(transform.localPosition + moveAmount, tweenTime).SetEase(easeTypeMove);
             transform.DOScale(scaleEnd * Vector3.one, tweenTime).OnComplete(() =>
             {
