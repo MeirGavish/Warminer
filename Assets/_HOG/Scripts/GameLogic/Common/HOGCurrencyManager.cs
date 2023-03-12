@@ -15,6 +15,7 @@ namespace HOG.GameLogic
         public void SetCurrencyByType(CurrencyTypes type, int amount = 0)
         {
             HOGManager.Instance.EventsManager.InvokeEvent(HOGEventNames.OnCurrencyChanged, (type, amount));
+            PlayerCurrencyData.CurrencyByType[type] = amount;
         }
         public void ChangeCurrencyByAmountByType(CurrencyTypes type, int amount = 0)
         {
@@ -30,7 +31,7 @@ namespace HOG.GameLogic
 
         public bool TryUseCurrency(CurrencyTypes currencyType, int amountToReduce)
         {
-            var currency = 0;
+            int currency = 0;
             var hasType = TryGetCurrencyByType(currencyType, out currency);
             var hasEnough = false;
 
