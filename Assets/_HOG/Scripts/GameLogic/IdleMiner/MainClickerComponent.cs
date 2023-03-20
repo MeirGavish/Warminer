@@ -9,7 +9,6 @@ namespace HOG.GameLogic
     public class MainClickerComponent : HOGLogicMonoBehaviour
     {
         HOGUpgradeableData clickUpgradeData;
-        public int metalPerClick = 1;
 
         private void Awake()
         {
@@ -18,7 +17,9 @@ namespace HOG.GameLogic
 
         public void OnMouseUpAsButton()
         {
-            GameLogic.CurrencyManager.ChangeCurrencyByAmountByType(CurrencyTypes.MetalCurrency, metalPerClick);
+            // TODO: Upgrades
+            HOGUpgradeableLevelData clickPowerUpgradeData = GameLogic.UpgradeManager.getUpgradeDataAtCurrLevelByType(UpgradeablesTypeID.ClickPowerUpgrade);
+            GameLogic.CurrencyManager.ChangeCurrencyByAmountByType(CurrencyTypes.MetalCurrency, clickPowerUpgradeData.Power);
         }
     }
 }

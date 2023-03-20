@@ -9,13 +9,20 @@ namespace  HOG.GameLogic
 {
     public class HOGMainUIComponent : HOGLogicMonoBehaviour
     {
-        [SerializeField] private TMP_Text scoreText;
+        [Tooltip("Match text to currency type by order of CurrencyType enum")]
+        [SerializeField] private TMP_Text[] CurrencyTexts = new TMP_Text[Enum.GetValues(typeof(CurrencyTypes)).Length];
         
         private void OnEnable()
         {
-            var score = 0;
+            int score = 0;
             GameLogic.CurrencyManager.TryGetCurrencyByType(CurrencyTypes.MetalCurrency, out score);
-            scoreText.text = score.ToString("N0");
+            
+            foreach(CurrencyTypes currencyType in Enum.GetValues(typeof(CurrencyTypes)))
+            {
+                int currencyVal = 0;
+                GameLogic.CurrencyManager.TryGetCurrencyByType(currencyType, out currencyVal);
+                CurrencyTexts[(int)currencyType].text = currencyVal.ToString("N0");
+            }
             
             AddListener(HOGEventNames.OnCurrencyChanged, OnCurrencyChanged);
         }
@@ -27,12 +34,11 @@ namespace  HOG.GameLogic
 
         private void OnCurrencyChanged(object obj)
         {
-            var scoreEventData = ((CurrencyTypes, int)) obj;
+            var currencyEventData = ((CurrencyTypes, int)) obj;
+            CurrencyTypes currencyType  = currencyEventData.Item1;
+            int currencyVal = currencyEventData.Item2;
 
-            if (scoreEventData.Item1 == CurrencyTypes.MetalCurrency)
-            {
-                scoreText.text = scoreEventData.Item2.ToString("N0");
-            }
+            CurrencyTexts[(int)currencyType].text = currencyVal.ToString("N0");
         }
         
         public void OnUpgradePressed()

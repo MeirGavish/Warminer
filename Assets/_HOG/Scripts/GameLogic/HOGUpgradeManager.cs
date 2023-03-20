@@ -37,10 +37,10 @@ namespace HOG.GameLogic
             {
                 var upgradeableConfig = GetHogUpgradeableConfigByID(typeID);
                 HOGUpgradeableLevelData levelData = upgradeableConfig.UpgradableLevelData[upgradeable.CurrentLevel + 1];
-                int amountToReduce = levelData.CoinsNeeded;
-                CurrencyTypes coinsType = levelData.CurrencyTag;
+                int amountToReduce = levelData.CurrencyAmountNeeded;
+                CurrencyTypes currencyType = levelData.CurrencyType;
 
-                if (HOGGameLogic.Instance.CurrencyManager.TryUseCurrency(coinsType, amountToReduce))
+                if (HOGGameLogic.Instance.CurrencyManager.TryUseCurrency(currencyType, amountToReduce))
                 {
                     upgradeable.CurrentLevel++;
                     HOGManager.Instance.EventsManager.InvokeEvent(HOGEventNames.OnUpgraded, typeID);
@@ -58,17 +58,28 @@ namespace HOG.GameLogic
             return upgradeableConfig;
         }
 
+
+        public HOGUpgradeableLevelData getUpgradeDataAtCurrLevelByType(UpgradeablesTypeID typeID)
+        {
+            int currLevel = GetUpgradeableByID(typeID).CurrentLevel;
+            return GetHogUpgradeableConfigByID(typeID).UpgradableLevelData[currLevel];
+        }
+        public HOGUpgradeableData GetUpgradeableByID(UpgradeablesTypeID typeID)
+        {
+            var upgradeable = PlayerUpgradeInventoryData.Upgradeables.FirstOrDefault(x => x.upgradableTypeID == typeID);
+            return upgradeable;
+        }
+
+        // TODO: Don't use, delete
         public int GetPowerByIDAndLevel(UpgradeablesTypeID typeID, int level)
         {
             var upgradeableConfig = GetHogUpgradeableConfigByID(typeID);
             var power = upgradeableConfig.UpgradableLevelData[level].Power;
             return power;
         }
-        
-        public HOGUpgradeableData GetUpgradeableByID(UpgradeablesTypeID typeID)
+        public int GetPowerAtCurrLevelByID(UpgradeablesTypeID typeID)
         {
-            var upgradeable = PlayerUpgradeInventoryData.Upgradeables.FirstOrDefault(x => x.upgradableTypeID == typeID);
-            return upgradeable;
+            return GetPowerByIDAndLevel(typeID, GetUpgradeableByID(typeID).CurrentLevel);
         }
     }
     
@@ -86,8 +97,8 @@ namespace HOG.GameLogic
     public struct HOGUpgradeableLevelData
     {
         public int Level;
-        public int CoinsNeeded;
-        public CurrencyTypes CurrencyTag;
+        public int CurrencyAmountNeeded;
+        public CurrencyTypes CurrencyType;
         public string ArtItem;
         public int Power;   
     }
@@ -111,29 +122,29 @@ namespace HOG.GameLogic
                     new HOGUpgradeableLevelData
                     {
                         Level = 1,
-                        CoinsNeeded = 0,
-                        CurrencyTag = CurrencyTypes.MetalCurrency,
+                        CurrencyAmountNeeded = 0,
+                        CurrencyType = CurrencyTypes.CoinsCurrency,
                         Power = 1
                     },
                     new HOGUpgradeableLevelData
                     {
                         Level = 2,
-                        CoinsNeeded = 50,
-                        CurrencyTag = CurrencyTypes.MetalCurrency,
+                        CurrencyAmountNeeded = 50,
+                        CurrencyType = CurrencyTypes.CoinsCurrency,
                         Power = 15
                     },
                     new HOGUpgradeableLevelData
                     {
                         Level = 3,
-                        CoinsNeeded = 1500,
-                        CurrencyTag = CurrencyTypes.MetalCurrency,
+                        CurrencyAmountNeeded = 1500,
+                        CurrencyType = CurrencyTypes.CoinsCurrency,
                         Power = 40
                     },
                     new HOGUpgradeableLevelData
                     {
                         Level = 4,
-                        CoinsNeeded = 8000,
-                        CurrencyTag = CurrencyTypes.MetalCurrency,
+                        CurrencyAmountNeeded = 8000,
+                        CurrencyType = CurrencyTypes.CoinsCurrency,
                         Power = 100
                     },
                     

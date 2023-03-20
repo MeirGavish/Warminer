@@ -125,6 +125,7 @@ namespace HOG.Core
     {
         NA = -1,
         ScoreToast = 0,
-        TrianglePool = 1
+        TrianglePool = 1,
+        EnemyPool = 2
     }
 }

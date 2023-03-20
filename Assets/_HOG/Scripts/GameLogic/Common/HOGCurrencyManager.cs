@@ -7,10 +7,20 @@ namespace HOG.GameLogic
 {
     public class HOGCurrencyManager
     {
-        public HOGPlayerCurrencyData PlayerCurrencyData;
+        public HOGPlayerCurrencyData PlayerCurrencyData = new();
 
         public bool TryGetCurrencyByType(CurrencyTypes type, out int currencyOut) 
             => PlayerCurrencyData.CurrencyByType.TryGetValue(type, out currencyOut);
+
+        public void GetOrInitCurrencyByType(CurrencyTypes type, out int currencyOut)
+        {
+            if (TryGetCurrencyByType(type, out currencyOut))
+            {
+                return;
+            }
+
+            currencyOut = PlayerCurrencyData.CurrencyByType[type] = 0;
+        }
 
         public void SetCurrencyByType(CurrencyTypes type, int amount = 0)
         {

@@ -181,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7440195081759136097}
-  - component: {fileID: 1968256431}
+  - component: {fileID: 8617288883206727092}
   m_Layer: 0
   m_Name: TextToast
   m_TagString: Untagged
@@ -205,7 +205,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1968256431
+--- !u!114 &8617288883206727092
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -214,8 +214,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7440195081759136098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731b91092def74376ba2963d9fd0b157, type: 3}
+  m_Script: {fileID: 11500000, guid: 1121bc970dd9f0443868a51e6078f011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: 0
   scoreTMP: {fileID: 7440195081270075569}
+  tweenTime: 1
+  moveAmount: {x: 0, y: 1, z: 0}
+  fadeTarget: 0
+  scaleStart: 0
+  scaleEnd: 1
+  easeTypeMove: 9
+  fadeEase:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
