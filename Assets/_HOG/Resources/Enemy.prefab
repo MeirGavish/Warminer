@@ -97,9 +97,10 @@ GameObject:
   - component: {fileID: -8811837655830671743}
   - component: {fileID: 325779312451303380}
   - component: {fileID: -7461466671727707043}
+  - component: {fileID: -1828276565549111441}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,9 +113,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3419442635592454684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.7854693, y: -0.9445951, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3529412}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3419442635173154768}
   m_Father: {fileID: 0}
@@ -130,7 +131,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -195,4 +196,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementComponent: {fileID: 325779312451303380}
-  Health: 100
+--- !u!114 &-1828276565549111441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3419442635592454684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d56281bb42c66b45b88f8ff15ce20cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100

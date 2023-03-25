@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace HOG.GameLogic
 {
@@ -12,12 +13,13 @@ namespace HOG.GameLogic
         [SerializeField]
         protected int damage;
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        protected void OnTriggerEnter2D(Collider2D collision)
         {
             GameObject collidedObject = collision.gameObject;
-            if (true /*damagableTags.(collidedObject.tag)*/)
+            if (damagableTags.Contains(collidedObject.tag))
             {
                 collidedObject.GetComponent<HOGHealthComponent>().DealDamage(damage);
+                Destroy(gameObject);
             }
         }
     }

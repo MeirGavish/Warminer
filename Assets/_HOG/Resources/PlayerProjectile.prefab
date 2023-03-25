@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1129232449728576238}
   - component: {fileID: 3045151443420156662}
+  - component: {fileID: 2219852613302317821}
   - component: {fileID: 3883755674429713327}
   - component: {fileID: 6037713514255072725}
   m_Layer: 0
@@ -56,6 +57,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &2219852613302317821
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129232449728576016}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!114 &3883755674429713327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,8 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1bee06818163e47bfbeb2b7794d182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagableTags: Enemy
-  damage: 0
+  damagableTags:
+  - Enemy
+  damage: 30
 --- !u!1 &4797042892377279227
 GameObject:
   m_ObjectHideFlags: 0
