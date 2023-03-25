@@ -49,9 +49,9 @@ namespace HOG.GameLogic
                 Quaternion enemyRotation = Quaternion.LookRotation(Vector3.forward, enemyDirection);
 
                 // TODO: Use pooling
-                Instantiate(EnemyGameObject, spawnLocation, enemyRotation);
+                GameObject spawnedEnemy = Instantiate(EnemyGameObject, spawnLocation, enemyRotation);
 
-                InvokeEvent(HOGEventNames.OnEnemySpawned, EnemyGameObject);
+                InvokeEvent(HOGEventNames.OnEnemySpawned, spawnedEnemy);
 
                 yield return new WaitForSeconds(SpawnInterval);
             }

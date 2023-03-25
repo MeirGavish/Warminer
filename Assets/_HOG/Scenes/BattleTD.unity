@@ -296,33 +296,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8937093829432293492, guid: 6a9c1a329e99a194e824d1fe73033c80, type: 3}
-      propertyPath: m_Radius
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 9090151790159210596, guid: 6a9c1a329e99a194e824d1fe73033c80, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 9090151790159210596, guid: 6a9c1a329e99a194e824d1fe73033c80, type: 3}
-      propertyPath: m_TagString
-      value: player
-      objectReference: {fileID: 0}
     - target: {fileID: 9090151790159210597, guid: 6a9c1a329e99a194e824d1fe73033c80, type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090151790159210597, guid: 6a9c1a329e99a194e824d1fe73033c80, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090151790159210597, guid: 6a9c1a329e99a194e824d1fe73033c80, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090151790159210597, guid: 6a9c1a329e99a194e824d1fe73033c80, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 9090151790159210597, guid: 6a9c1a329e99a194e824d1fe73033c80, type: 3}
       propertyPath: m_LocalPosition.x
@@ -363,10 +343,6 @@ PrefabInstance:
     - target: {fileID: 9090151790159210597, guid: 6a9c1a329e99a194e824d1fe73033c80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090151790159210597, guid: 6a9c1a329e99a194e824d1fe73033c80, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a9c1a329e99a194e824d1fe73033c80, type: 3}

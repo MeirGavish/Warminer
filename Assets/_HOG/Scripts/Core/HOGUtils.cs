@@ -32,6 +32,4 @@ namespace HOG.Core
             return new Vector2(magnitude * Mathf.Cos(angleRadians), magnitude * Mathf.Sin(angleRadians));
         }
     }
-
-
 }

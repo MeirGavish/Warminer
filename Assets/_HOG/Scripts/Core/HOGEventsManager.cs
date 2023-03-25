@@ -8,7 +8,8 @@ namespace HOG.Core
         OnGameStart,
         OnCurrencyChanged,
         OnUpgraded,
-        OnEnemySpawned
+        OnEnemySpawned,
+        OnEntityKilled
     }
     public class HOGEventsManager
     {

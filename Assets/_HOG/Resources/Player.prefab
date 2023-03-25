@@ -126,9 +126,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9090151790159210597}
   - component: {fileID: -8937093829432293492}
+  - component: {fileID: 7880493553846794640}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,8 +143,8 @@ Transform:
   m_GameObject: {fileID: 9090151790159210596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.53, y: 0.53, z: 0.53}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9090151791252929295}
   - {fileID: 2351450654917344838}
@@ -166,6 +167,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.8
+--- !u!114 &7880493553846794640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9090151790159210596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b73e92521cbbd4a90fa3d34e8c9bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProjectileSpawn: {fileID: 399436412129726526}
+  ProjectileObject: {fileID: 1129232449728576016, guid: c3c453f5f152f5448b213cc3b8faf090, type: 3}
+  StartShootingDelay: 1
+  ShootingInterval: 1
 --- !u!1 &9090151791252929294
 GameObject:
   m_ObjectHideFlags: 0

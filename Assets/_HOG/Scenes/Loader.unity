@@ -454,4 +454,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcc823c80ee54d01b5c2b2d546edfcfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triangleOriginal: {fileID: -3559480632574061625, guid: 3df7fbd216d0b4d559e4a553d1d17a21, type: 3}
