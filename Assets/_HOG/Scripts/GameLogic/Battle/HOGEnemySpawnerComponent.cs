@@ -13,21 +13,17 @@ namespace HOG.GameLogic
         [SerializeField]
         private float WaitBeforeSpawnStart;
 
-        // TODO: Visible GameObject?
-        [SerializeField]
-        private float SpawnDistance;
-
         [SerializeField]
         private GameObject EnemyGameObject;
 
         [SerializeField]
         private GameObject PlayerInstance;
 
-        private bool SpawningEnemies;
+        private bool SpawningEnemies = true;
 
         private void Awake()
         {
-            Manager.PoolManager.InitPool("Enemy", 40);
+            //Manager.PoolManager.InitPool("Enemy", 40);
         }
 
         // Start is called before the first frame update
@@ -39,20 +35,25 @@ namespace HOG.GameLogic
 
         IEnumerator SpawnEnemies()
         {
+            // TODO: Use timing system...
             yield return new WaitForSeconds(WaitBeforeSpawnStart);
 
             while (SpawningEnemies)
             {
-                yield return new WaitForSeconds(SpawnInterval);
+                float distanceToPlayer = Vector2.Distance(transform.position, PlayerInstance.transform.position);
 
-                Vector2 spawnLocation = Random.onUnitSphere * SpawnDistance;
+                Vector2 spawnLocation = HOGUtils.Vector2FromMagnitudeAngle(distanceToPlayer, Random.Range(0, 2 * Mathf.PI));
                 Vector2 enemyDirection = (Vector2)PlayerInstance.transform.position - spawnLocation;
-                Quaternion enemyRotation = Quaternion.LookRotation(enemyDirection, Vector3.forward);
+                
+                // The look rotation is inverted... why?
+                Quaternion enemyRotation = Quaternion.LookRotation(Vector3.forward, enemyDirection);
 
                 // TODO: Use pooling
                 Instantiate(EnemyGameObject, spawnLocation, enemyRotation);
 
                 InvokeEvent(HOGEventNames.OnEnemySpawned, EnemyGameObject);
+
+                yield return new WaitForSeconds(SpawnInterval);
             }
         }
     }

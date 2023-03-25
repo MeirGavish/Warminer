@@ -113,8 +113,8 @@ Transform:
   m_GameObject: {fileID: 3419442635592454684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.7854693, y: -0.9445951, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3529412}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3419442635173154768}
   m_Father: {fileID: 0}
@@ -156,7 +156,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3419442635592454684}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3419442635592454684}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d96e434423f49524bb80794d356684e8, type: 3}
   m_Name: 
@@ -194,3 +194,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fbfa9710d41fd343b7ab2026eef82ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementComponent: {fileID: 325779312451303380}
+  Health: 100

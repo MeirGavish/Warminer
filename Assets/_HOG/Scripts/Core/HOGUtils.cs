@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace HOG.Core
 {
+    // static class, static functions only
     public class HOGUtils
     {
         public static GameObject GameObjectFindWithTagSingular(string tag)
@@ -25,5 +26,12 @@ namespace HOG.Core
 
             return retVal;
         }
+
+        public static Vector2 Vector2FromMagnitudeAngle(float magnitude, float angleRadians)
+        {
+            return new Vector2(magnitude * Mathf.Cos(angleRadians), magnitude * Mathf.Sin(angleRadians));
+        }
     }
+
+
 }

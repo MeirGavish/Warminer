@@ -24,7 +24,7 @@ namespace HOG.GameLogic
 
         public void StartMovement()
         {
-            rb.velocity = transform.forward * speed;
+            rb.velocity = transform.up * speed;
         }
     }
 }
