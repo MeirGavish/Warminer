@@ -4,25 +4,33 @@ using DG.Tweening;
 using HOG.Core;
 using TMPro;
 using UnityEngine;
+using System.Linq;
+using UnityEngine.SceneManagement;
 
 namespace  HOG.GameLogic
 {
     public class HOGMainUIComponent : HOGLogicMonoBehaviour
     {
         // TODO: Do I really want to do it like this...?
-        [Tooltip("Match text to currency type by order of CurrencyType enum")]
-        [SerializeField] private TMP_Text[] CurrencyTexts = new TMP_Text[Enum.GetValues(typeof(CurrencyTypes)).Length];
-        
+        [Tooltip("The order of the currency types dictates which currency each text is.\n" +
+                 "Length Must be the same")]
+        [SerializeField] private TMP_Text[] CurrencyTexts;
+        [SerializeField] private CurrencyTypes[] CurrencyTypesOfTexts;
+
         private void OnEnable()
         {
-            int score = 0;
-            GameLogic.CurrencyManager.TryGetCurrencyByType(CurrencyTypes.MetalCurrency, out score);
-            
-            foreach(CurrencyTypes currencyType in Enum.GetValues(typeof(CurrencyTypes)))
+            if (CurrencyTypesOfTexts.Length != CurrencyTexts.Length)
             {
+                Debug.LogError("Mismatching currency types and texts length!");
+                return;
+            }
+
+            for (int i = 0; i < CurrencyTypesOfTexts.Length; i++)
+            {
+                CurrencyTypes currencyType = CurrencyTypesOfTexts[i];
                 int currencyVal = 0;
                 GameLogic.CurrencyManager.TryGetCurrencyByType(currencyType, out currencyVal);
-                CurrencyTexts[(int)currencyType].text = currencyVal.ToString("N0");
+                CurrencyTexts[i].text = currencyVal.ToString("N0");
             }
             
             AddListener(HOGEventNames.OnCurrencyChanged, OnCurrencyChanged);
@@ -39,12 +47,22 @@ namespace  HOG.GameLogic
             CurrencyTypes currencyType  = currencyEventData.Item1;
             int currencyVal = currencyEventData.Item2;
 
-            CurrencyTexts[(int)currencyType].text = currencyVal.ToString("N0");
+            CurrencyTexts[Array.IndexOf(CurrencyTypesOfTexts, currencyType)].text = currencyVal.ToString("N0");
         }
         
         public void OnUpgradePressed()
         {
             GameLogic.UpgradeManager.UpgradeItemByID(UpgradeablesTypeID.ClickPowerUpgrade);
+        }
+
+        public void LoadBattle()
+        {
+            SceneManager.LoadScene("BattleTD");
+        }
+
+        public void LoadIdleMiner()
+        {
+            SceneManager.LoadScene("IdleMiner");
         }
     }
 }

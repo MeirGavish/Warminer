@@ -10,16 +10,17 @@ namespace HOG.GameLogic
         [SerializeField]
         protected string[] damagableTags;
 
-        [SerializeField]
-        protected int damage;
+        [field: SerializeField]
+        public int Damage { get; protected set; }
 
-        protected void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            GameObject collidedObject = collision.gameObject;
-            if (damagableTags.Contains(collidedObject.tag))
+            var projectileComponent = gameObject.GetComponent<HOGProjectileComponent>();
+            if (damagableTags.Contains(collision.gameObject.tag))
             {
-                collidedObject.GetComponent<HOGHealthComponent>().DealDamage(damage);
+                var healthComponent = collision.gameObject.GetComponent<HOGHealthComponent>();
                 Destroy(gameObject);
+                healthComponent.DealDamage(projectileComponent.Damage);
             }
         }
     }
