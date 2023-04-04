@@ -29,6 +29,12 @@ namespace HOG.Core
         
         public void InitPool(HOGPoolable original, int amount, int maxAmount)
         {
+            if (Pools.ContainsKey(original.poolName))
+            {
+                // Pool already init
+                return;
+            }
+
             HOGManager.Instance.FactoryManager.MultiCreateAsync(original, Vector3.zero, amount, 
                 delegate(List<HOGPoolable> list)
                 {

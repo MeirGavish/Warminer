@@ -706,7 +706,7 @@ MonoBehaviour:
   CurrencyTexts:
   - {fileID: 2009686047}
   - {fileID: 539927572}
-  CurrencyTypesOfTexts: 
+  CurrencyTypesOfTexts: 0000000001000000
 --- !u!114 &1489188306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -878,7 +878,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1489188305}
         m_TargetAssemblyTypeName: HOG.GameLogic.HOGMainUIComponent, HOG.GamePlay
-        m_MethodName: OnUpgradePressed
+        m_MethodName: LoadBattle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

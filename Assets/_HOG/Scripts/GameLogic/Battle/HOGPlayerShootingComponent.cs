@@ -31,7 +31,6 @@ namespace HOG.GameLogic
             GameObject DestroyedEntityGO = (GameObject)DestroyedEntity; 
             if (DestroyedEntityGO.tag == "Enemy")
             {
-
                 SetTarget(enemyQueue.Dequeue());
             }
         }

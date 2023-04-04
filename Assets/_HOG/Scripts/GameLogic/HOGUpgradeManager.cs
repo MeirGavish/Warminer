@@ -149,6 +149,33 @@ namespace HOG.GameLogic
                     },
                     
                 }
+            },
+            new HOGUpgradeableConfig
+            {
+                UpgradableTypeID = UpgradeablesTypeID.ClickPowerUpgrade,
+                UpgradableLevelData = new List<HOGUpgradeableLevelData>(){
+                    new HOGUpgradeableLevelData
+                    {
+                        Level = 1,
+                        CurrencyAmountNeeded = 0,
+                        CurrencyType = CurrencyTypes.MetalCurrency,
+                        Power = 30
+                    },
+                    new HOGUpgradeableLevelData
+                    {
+                        Level = 2,
+                        CurrencyAmountNeeded = 50,
+                        CurrencyType = CurrencyTypes.MetalCurrency,
+                        Power = 50
+                    },
+                    new HOGUpgradeableLevelData
+                    {
+                        Level = 3,
+                        CurrencyAmountNeeded = 1500,
+                        CurrencyType = CurrencyTypes.MetalCurrency,
+                        Power = 70
+                    },
+                }
             }
         };
     }
@@ -163,6 +190,7 @@ namespace HOG.GameLogic
     [Serializable]
     public enum UpgradeablesTypeID
     {
-        ClickPowerUpgrade = 0
+        ClickPowerUpgrade = 0,
+        DamageUpgrade
     }
 }
