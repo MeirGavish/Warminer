@@ -12,9 +12,11 @@ namespace  HOG.GameLogic
     public class HOGMainUIComponent : HOGLogicMonoBehaviour
     {
         // TODO: Do I really want to do it like this...?
-        [Tooltip("The order of the currency types dictates which currency each text is.\n" +
-                 "Length Must be the same")]
+        [Tooltip("The currency type of the text is dictated by CurrencyTypesofTexts.\n" +
+                 "Lengths must be the same")]
         [SerializeField] private TMP_Text[] CurrencyTexts;
+        [Tooltip("The types dictate which currency each of the texts in CurrencyTexts is.\n" +
+                 "Lengths must be the same")]
         [SerializeField] private CurrencyTypes[] CurrencyTypesOfTexts;
 
         private void OnEnable()
