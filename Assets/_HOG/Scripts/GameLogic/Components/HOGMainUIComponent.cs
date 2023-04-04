@@ -9,6 +9,7 @@ namespace  HOG.GameLogic
 {
     public class HOGMainUIComponent : HOGLogicMonoBehaviour
     {
+        // TODO: Do I really want to do it like this...?
         [Tooltip("Match text to currency type by order of CurrencyType enum")]
         [SerializeField] private TMP_Text[] CurrencyTexts = new TMP_Text[Enum.GetValues(typeof(CurrencyTypes)).Length];
         

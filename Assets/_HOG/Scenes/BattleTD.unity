@@ -296,6 +296,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8937093829432293492, guid: 6a9c1a329e99a194e824d1fe73033c80, type: 3}
+      propertyPath: m_Radius
+      value: 2.04
+      objectReference: {fileID: 0}
     - target: {fileID: 9090151790159210596, guid: 6a9c1a329e99a194e824d1fe73033c80, type: 3}
       propertyPath: m_Name
       value: Player

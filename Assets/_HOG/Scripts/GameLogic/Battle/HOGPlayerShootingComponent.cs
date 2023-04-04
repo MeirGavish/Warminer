@@ -11,9 +11,8 @@ namespace HOG.GameLogic
         private void Awake()
         {
             AddListener(Core.HOGEventNames.OnEnemySpawned, OnEnemySpawned);
+            AddListener(Core.HOGEventNames.OnEntityKilled, OnEnemyDestroyed);
         }
-
-        
 
         void OnEnemySpawned(object spawnedEnemy)
         {
@@ -22,21 +21,19 @@ namespace HOG.GameLogic
 
             if (target == null)
             {
+                enemyQueue.Dequeue();
                 SetTarget(spawnedEnemyGO);
             }
         }
 
-
-        void OnEnemyDestroyed(object notUsed)
+        void OnEnemyDestroyed(object DestroyedEntity)
         {
-            GameObject nextTarget = null;
-            if (!enemyQueue.TryDequeue(out nextTarget))
+            GameObject DestroyedEntityGO = (GameObject)DestroyedEntity; 
+            if (DestroyedEntityGO.tag == "Enemy")
             {
-                target = null;
-                return;
-            }
 
-            SetTarget(nextTarget);
+                SetTarget(enemyQueue.Dequeue());
+            }
         }
     }
 }

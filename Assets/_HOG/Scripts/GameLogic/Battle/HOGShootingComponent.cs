@@ -41,6 +41,11 @@ namespace HOG.GameLogic
         protected void SetTarget(GameObject newTarget)
         {
             target = newTarget;
+            if (newTarget == null)
+            {
+                return;
+            }
+
             Vector2 playerToTarget = target.transform.position - transform.position;
 
             // TODO: Tween
