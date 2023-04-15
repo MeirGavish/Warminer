@@ -19,7 +19,27 @@ namespace HOG.GameLogic
         [SerializeField]
         protected float ShootingInterval = 1;
 
-        protected GameObject target = null;
+        private GameObject _target = null;
+        public GameObject Target 
+        { 
+            get => _target;
+
+            // TODO: Is this okay to do as a property setter?
+            set 
+            {
+                _target = value;
+                if (_target == null)
+                {
+                    return;
+                }
+
+                Vector2 playerToTarget = _target.transform.position - transform.position;
+
+                // TODO: Tween
+                transform.rotation = Quaternion.LookRotation(Vector3.forward, playerToTarget);
+            }
+        }
+
         protected bool isShooting = true;
 
         // TODO: Should be used as listener actions
@@ -38,20 +58,6 @@ namespace HOG.GameLogic
             StartCoroutine(ShootingCoroutine());
         }
 
-        protected void SetTarget(GameObject newTarget)
-        {
-            target = newTarget;
-            if (newTarget == null)
-            {
-                return;
-            }
-
-            Vector2 playerToTarget = target.transform.position - transform.position;
-
-            // TODO: Tween
-            transform.rotation = Quaternion.LookRotation(Vector3.forward, playerToTarget);
-        }
-
         void Shoot()
         {
             // TODO: Use pooling
@@ -66,7 +72,7 @@ namespace HOG.GameLogic
 
             while (isShooting)
             {
-                if (target != null)
+                if (Target != null)
                 {
                     Shoot();
                 }

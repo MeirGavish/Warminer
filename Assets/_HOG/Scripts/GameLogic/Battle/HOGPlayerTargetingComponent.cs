@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace HOG.GameLogic
 {
-    public class HOGPlayerShootingComponent : HOGShootingComponent
+    public class HOGPlayerTargetingComponent : HOGLogicMonoBehaviour
     {
         private Queue<GameObject> enemyQueue = new();
+        private HOGShootingComponent shootingComp;
 
         private void Awake()
         {
@@ -14,15 +15,20 @@ namespace HOG.GameLogic
             AddListener(Core.HOGEventNames.OnEntityKilled, OnEnemyDestroyed);
         }
 
+        private void Start()
+        {
+            shootingComp = GetComponent<HOGShootingComponent>();
+        }
+
         void OnEnemySpawned(object spawnedEnemy)
         {
             GameObject spawnedEnemyGO = (GameObject)spawnedEnemy;
             enemyQueue.Enqueue(spawnedEnemyGO);
 
-            if (target == null)
+            if (shootingComp.Target == null)
             {
                 enemyQueue.Dequeue();
-                SetTarget(spawnedEnemyGO);
+                shootingComp.Target = spawnedEnemyGO;
             }
         }
 
@@ -31,8 +37,14 @@ namespace HOG.GameLogic
             GameObject DestroyedEntityGO = (GameObject)DestroyedEntity; 
             if (DestroyedEntityGO.tag == "Enemy")
             {
-                SetTarget(enemyQueue.Dequeue());
+                shootingComp.Target = enemyQueue.Dequeue();
             }
+        }
+
+        private void OnDisable()
+        {
+            RemoveListener(Core.HOGEventNames.OnEnemySpawned, OnEnemySpawned);
+            RemoveListener(Core.HOGEventNames.OnEntityKilled, OnEnemyDestroyed);
         }
     }
 }
