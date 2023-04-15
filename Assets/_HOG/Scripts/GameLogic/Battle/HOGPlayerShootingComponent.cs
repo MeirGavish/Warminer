@@ -20,6 +20,7 @@ namespace HOG.GameLogic
         [SerializeField]
         protected float ShootingInterval = 1;
 
+
         protected GameObject Target = null;
 
         protected bool isShooting = true;
@@ -34,11 +35,12 @@ namespace HOG.GameLogic
             AddListener(Core.HOGEventNames.OnEnemySpawned, OnEnemySpawned);
             AddListener(Core.HOGEventNames.OnEntityKilled, OnEnemyDestroyed);
 
-            damageUpgradeData = GameLogic.UpgradeManager.GetUpgradeableByID(UpgradeablesTypeID.DamageUpgrade);
+            // TODO: Uncomment
+            //damageUpgradeData = GameLogic.UpgradeManager.GetUpgradeableByID(UpgradeablesTypeID.DamageUpgrade);
            
-            int projectileDamage = GameLogic.UpgradeManager.GetPowerByIDAndLevel(UpgradeablesTypeID.DamageUpgrade, damageUpgradeData.CurrentLevel);
-            projectileComponent = ProjectileObject.GetComponent<HOGProjectileComponent>();
-            projectileComponent.Damage = projectileDamage;
+            //int projectileDamage = GameLogic.UpgradeManager.GetPowerByIDAndLevel(UpgradeablesTypeID.DamageUpgrade, damageUpgradeData.CurrentLevel);
+            //projectileComponent = ProjectileObject.GetComponent<HOGProjectileComponent>();
+            //projectileComponent.Damage = projectileDamage;
         }
 
         private void OnDisable()
@@ -69,6 +71,15 @@ namespace HOG.GameLogic
                         ProjectileSpawn.transform.rotation);
         }
 
+        protected void SetTarget(GameObject newTarget)
+        {
+            Target = newTarget;
+            Vector2 playerToTarget = Target.transform.position - transform.position;
+
+            // TODO: Tween
+            transform.rotation = Quaternion.LookRotation(Vector3.forward, playerToTarget);
+        }
+
         IEnumerator ShootingCoroutine()
         {
             yield return new WaitForSeconds(StartShootingDelay);
@@ -92,12 +103,7 @@ namespace HOG.GameLogic
             if (Target == null)
             {
                 enemyQueue.Dequeue();
-                Target = spawnedEnemyGO;
-
-                Vector2 playerToTarget = Target.transform.position - transform.position;
-
-                // TODO: Tween
-                transform.rotation = Quaternion.LookRotation(Vector3.forward, playerToTarget);
+                SetTarget(spawnedEnemyGO);
             }
         }
 
@@ -106,7 +112,7 @@ namespace HOG.GameLogic
             GameObject DestroyedEntityGO = (GameObject)DestroyedEntity;
             if (DestroyedEntityGO.CompareTag("Enemy"))
             {
-                Target = enemyQueue.Dequeue();
+                SetTarget(enemyQueue.Dequeue());
             }
         }
     }
