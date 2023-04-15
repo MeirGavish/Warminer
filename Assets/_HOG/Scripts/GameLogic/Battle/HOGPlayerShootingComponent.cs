@@ -6,20 +6,16 @@ namespace HOG.GameLogic
 {
     public class HOGPlayerShootingComponent : HOGLogicMonoBehaviour
     {
-        
-        [SerializeField]
-        protected GameObject ProjectileSpawn;
+        [SerializeField] protected GameObject ProjectileSpawn;
 
-        [SerializeField]
-        protected GameObject ProjectileObject;
+        [SerializeField] protected GameObject ProjectileObject;
 
-        [SerializeField]
-        protected float StartShootingDelay = 1;
+        [SerializeField]  protected float StartShootingDelay = 1;
 
         // TODO: Should be set from weapon/config
-        [SerializeField]
-        protected float ShootingInterval = 1;
+        [SerializeField] protected float ShootingInterval = 1;
 
+        [SerializeField]  protected float range = 1;
 
         protected GameObject Target = null;
 
@@ -35,12 +31,11 @@ namespace HOG.GameLogic
             AddListener(Core.HOGEventNames.OnEnemySpawned, OnEnemySpawned);
             AddListener(Core.HOGEventNames.OnEntityKilled, OnEnemyDestroyed);
 
-            // TODO: Uncomment
-            //damageUpgradeData = GameLogic.UpgradeManager.GetUpgradeableByID(UpgradeablesTypeID.DamageUpgrade);
-           
-            //int projectileDamage = GameLogic.UpgradeManager.GetPowerByIDAndLevel(UpgradeablesTypeID.DamageUpgrade, damageUpgradeData.CurrentLevel);
-            //projectileComponent = ProjectileObject.GetComponent<HOGProjectileComponent>();
-            //projectileComponent.Damage = projectileDamage;
+            damageUpgradeData = GameLogic.UpgradeManager.GetUpgradeableByID(UpgradeablesTypeID.DamageUpgrade);
+
+            int projectileDamage = GameLogic.UpgradeManager.GetPowerByIDAndLevel(UpgradeablesTypeID.DamageUpgrade, damageUpgradeData.CurrentLevel);
+            projectileComponent = ProjectileObject.GetComponent<HOGProjectileComponent>();
+            projectileComponent.Damage = projectileDamage;
         }
 
         private void OnDisable()
@@ -74,10 +69,13 @@ namespace HOG.GameLogic
         protected void SetTarget(GameObject newTarget)
         {
             Target = newTarget;
-            Vector2 playerToTarget = Target.transform.position - transform.position;
+            if (newTarget != null)
+            {
+                Vector2 playerToTarget = Target.transform.position - transform.position;
 
-            // TODO: Tween
-            transform.rotation = Quaternion.LookRotation(Vector3.forward, playerToTarget);
+                // TODO: Tween
+                transform.rotation = Quaternion.LookRotation(Vector3.forward, playerToTarget);
+            }
         }
 
         IEnumerator ShootingCoroutine()
@@ -112,7 +110,9 @@ namespace HOG.GameLogic
             GameObject DestroyedEntityGO = (GameObject)DestroyedEntity;
             if (DestroyedEntityGO.CompareTag("Enemy"))
             {
-                SetTarget(enemyQueue.Dequeue());
+                GameObject newTarget;
+                enemyQueue.TryDequeue(out newTarget);
+                SetTarget(newTarget);
             }
         }
     }

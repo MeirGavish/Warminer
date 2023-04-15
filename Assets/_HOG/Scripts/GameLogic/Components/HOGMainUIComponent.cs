@@ -52,9 +52,14 @@ namespace  HOG.GameLogic
             CurrencyTexts[Array.IndexOf(CurrencyTypesOfTexts, currencyType)].text = currencyVal.ToString("N0");
         }
         
-        public void OnUpgradePressed()
+        public void OnUpgradeClickPowerPressed()
         {
             GameLogic.UpgradeManager.UpgradeItemByID(UpgradeablesTypeID.ClickPowerUpgrade);
+        }
+
+        public void OnUpgradeDamagePressed()
+        {
+            GameLogic.UpgradeManager.UpgradeItemByID(UpgradeablesTypeID.DamageUpgrade);
         }
 
         public void LoadBattle()

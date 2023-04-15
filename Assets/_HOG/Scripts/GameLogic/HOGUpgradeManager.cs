@@ -18,9 +18,15 @@ namespace HOG.GameLogic
         {
             PlayerUpgradeInventoryData = new HOGPlayerUpgradeInventoryData
             {
-                Upgradeables = new List<HOGUpgradeableData>(){new HOGUpgradeableData
+                Upgradeables = new List<HOGUpgradeableData>()
+                {   new HOGUpgradeableData
                     {
                         upgradableTypeID = UpgradeablesTypeID.ClickPowerUpgrade,
+                        CurrentLevel = 0
+                    },
+                    new HOGUpgradeableData
+                    {
+                        upgradableTypeID = UpgradeablesTypeID.DamageUpgrade,
                         CurrentLevel = 0
                     }
                 }

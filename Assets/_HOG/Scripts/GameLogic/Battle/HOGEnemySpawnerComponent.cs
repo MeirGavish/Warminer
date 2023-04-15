@@ -42,10 +42,10 @@ namespace HOG.GameLogic
             {
                 float distanceToPlayer = Vector2.Distance(transform.position, PlayerInstance.transform.position);
 
-                Vector2 spawnLocation = HOGUtils.Vector2FromMagnitudeAngle(distanceToPlayer, Random.Range(0, 2 * Mathf.PI));
+                Vector2 spawnLocationOffset = HOGUtils.Vector2FromMagnitudeAngle(distanceToPlayer, Random.Range(0, 2 * Mathf.PI));
+                Vector2 spawnLocation = (Vector2)PlayerInstance.transform.position + spawnLocationOffset;
                 Vector2 enemyDirection = (Vector2)PlayerInstance.transform.position - spawnLocation;
                 
-                // The look rotation is inverted... why?
                 Quaternion enemyRotation = Quaternion.LookRotation(Vector3.forward, enemyDirection);
 
                 // TODO: Use pooling

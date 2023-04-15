@@ -114,8 +114,8 @@ Transform:
   m_GameObject: {fileID: 3419442635592454684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.27, y: 0.27, z: 0.27}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3419442635173154768}
   m_Father: {fileID: 0}
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fbfa9710d41fd343b7ab2026eef82ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementComponent: {fileID: 325779312451303380}
+  coinValue: 3
 --- !u!114 &-1828276565549111441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,4 +208,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d56281bb42c66b45b88f8ff15ce20cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  <Health>k__BackingField: 100
