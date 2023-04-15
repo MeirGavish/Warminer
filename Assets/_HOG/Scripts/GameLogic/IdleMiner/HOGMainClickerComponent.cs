@@ -7,7 +7,6 @@ namespace  HOG.GameLogic
     public class HOGMainClickerComponent : HOGLogicMonoBehaviour
     {
         HOGUpgradeableData clickUpgradeData;
-        int score = 0;
 
         private void Awake()
         {

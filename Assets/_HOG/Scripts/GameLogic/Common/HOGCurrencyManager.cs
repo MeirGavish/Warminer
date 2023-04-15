@@ -47,7 +47,7 @@ namespace HOG.GameLogic
 
             if (hasType)
             {
-                hasEnough = amountToReduce >= currency;
+                hasEnough = amountToReduce <= currency;
             }
 
             if (hasEnough)

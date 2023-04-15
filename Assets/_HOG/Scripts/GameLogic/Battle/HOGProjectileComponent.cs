@@ -11,7 +11,7 @@ namespace HOG.GameLogic
         protected string[] damagableTags;
 
         [field: SerializeField]
-        public int Damage { get; protected set; }
+        public int Damage { get; set; }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {

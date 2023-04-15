@@ -58,31 +58,25 @@ namespace HOG.GameLogic
             return upgradeableConfig;
         }
 
-
-        public HOGUpgradeableLevelData getUpgradeDataAtCurrLevelByType(UpgradeablesTypeID typeID)
-        {
-            int currLevel = GetUpgradeableByID(typeID).CurrentLevel;
-            return GetHogUpgradeableConfigByID(typeID).UpgradableLevelData[currLevel];
-        }
         public HOGUpgradeableData GetUpgradeableByID(UpgradeablesTypeID typeID)
         {
             var upgradeable = PlayerUpgradeInventoryData.Upgradeables.FirstOrDefault(x => x.upgradableTypeID == typeID);
             return upgradeable;
         }
 
-        // TODO: Don't use, delete
+        // TODO: Don't use, delete?
         public int GetPowerByIDAndLevel(UpgradeablesTypeID typeID, int level)
         {
             var upgradeableConfig = GetHogUpgradeableConfigByID(typeID);
             var power = upgradeableConfig.UpgradableLevelData[level].Power;
             return power;
         }
+
         public int GetPowerAtCurrLevelByID(UpgradeablesTypeID typeID)
         {
             return GetPowerByIDAndLevel(typeID, GetUpgradeableByID(typeID).CurrentLevel);
         }
     }
-    
     
     //Per Player Owned Item
     [Serializable]
@@ -152,7 +146,7 @@ namespace HOG.GameLogic
             },
             new HOGUpgradeableConfig
             {
-                UpgradableTypeID = UpgradeablesTypeID.ClickPowerUpgrade,
+                UpgradableTypeID = UpgradeablesTypeID.DamageUpgrade,
                 UpgradableLevelData = new List<HOGUpgradeableLevelData>(){
                     new HOGUpgradeableLevelData
                     {

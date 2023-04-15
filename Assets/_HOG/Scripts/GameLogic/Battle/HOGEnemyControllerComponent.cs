@@ -6,9 +6,6 @@ namespace HOG.GameLogic
 {
     public class HOGEnemyControllerComponent : HOGLogicMonoBehaviour
     {
-        // TODO: Move re-creation logic to pool manager?
-        static bool scoreToastPoolInitialized = false;
-
         private HOGMovementComponent movementComponent;
         private HOGHealthComponent healthComponent;
 
@@ -21,11 +18,7 @@ namespace HOG.GameLogic
             healthComponent = GetComponent<HOGHealthComponent>();
             healthComponent.OnDeathAction = OnDeathAction;
 
-            if (!scoreToastPoolInitialized)
-            {
-                Manager.PoolManager.InitPool("TextToast", 15);
-                scoreToastPoolInitialized = true;
-            }
+            Manager.PoolManager.InitPool("TextToast", 15);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
