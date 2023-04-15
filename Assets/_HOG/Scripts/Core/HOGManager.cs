@@ -10,7 +10,8 @@ namespace HOG.Core
         public HOGEventsManager EventsManager;
         public HOGFactoryManager FactoryManager;
         public HOGPoolManager PoolManager;
-        
+        public HOGSaveManager SaveManager;
+
         public HOGManager()
         {
             if (Instance != null)
@@ -26,7 +27,8 @@ namespace HOG.Core
             EventsManager = new HOGEventsManager();
             FactoryManager = new HOGFactoryManager();
             PoolManager = new HOGPoolManager();
-            
+            SaveManager = new HOGSaveManager();
+
             onComplete.Invoke();
         }
     }

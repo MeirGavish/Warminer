@@ -818,7 +818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5082d8e21dce4a4998f91e29a86e1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnInterval: 0.2
+  SpawnInterval: 3
   WaitBeforeSpawnStart: 3
   EnemyGameObject: {fileID: 3419442635592454684, guid: 1dd2fe65166b3b54392638cf04808cc6, type: 3}
   PlayerInstance: {fileID: 9090151789864900063}
