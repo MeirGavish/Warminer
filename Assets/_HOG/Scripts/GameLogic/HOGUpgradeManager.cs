@@ -16,21 +16,35 @@ namespace HOG.GameLogic
         //Load Config From Load
         public HOGUpgradeManager()
         {
-            PlayerUpgradeInventoryData = new HOGPlayerUpgradeInventoryData
+            if (PlayerUpgradeInventoryData == null)
             {
-                Upgradeables = new List<HOGUpgradeableData>()
-                {   new HOGUpgradeableData
+                HOGManager.Instance.SaveManager.Load<HOGPlayerUpgradeInventoryData>((HOGPlayerUpgradeInventoryData data) =>
+                {
+                    if (data != null)
                     {
-                        upgradableTypeID = UpgradeablesTypeID.ClickPowerUpgrade,
-                        CurrentLevel = 0
-                    },
-                    new HOGUpgradeableData
-                    {
-                        upgradableTypeID = UpgradeablesTypeID.DamageUpgrade,
-                        CurrentLevel = 0
+                        PlayerUpgradeInventoryData = data;
                     }
-                }
-            };
+                    else
+                    {
+                        PlayerUpgradeInventoryData = new HOGPlayerUpgradeInventoryData
+                        {
+                            Upgradeables = new List<HOGUpgradeableData>()
+                            {   new HOGUpgradeableData
+                                {
+                                    upgradableTypeID = UpgradeablesTypeID.ClickPowerUpgrade,
+                                    CurrentLevel = 0
+                                },
+                                new HOGUpgradeableData
+                                {
+                                    upgradableTypeID = UpgradeablesTypeID.DamageUpgrade,
+                                    CurrentLevel = 0
+                                }
+                            }
+                        };
+                    }
+                });
+            }
+            
             
             
         }
@@ -50,6 +64,8 @@ namespace HOG.GameLogic
                 {
                     upgradeable.CurrentLevel++;
                     HOGManager.Instance.EventsManager.InvokeEvent(HOGEventNames.OnUpgraded, typeID);
+
+                    HOGManager.Instance.SaveManager.Save(PlayerUpgradeInventoryData);
                 }
                 else
                 {
@@ -129,21 +145,21 @@ namespace HOG.GameLogic
                     new HOGUpgradeableLevelData
                     {
                         Level = 2,
-                        CurrencyAmountNeeded = 50,
+                        CurrencyAmountNeeded = 30,
                         CurrencyType = CurrencyTypes.CoinsCurrency,
                         Power = 15
                     },
                     new HOGUpgradeableLevelData
                     {
                         Level = 3,
-                        CurrencyAmountNeeded = 1500,
+                        CurrencyAmountNeeded = 200,
                         CurrencyType = CurrencyTypes.CoinsCurrency,
                         Power = 40
                     },
                     new HOGUpgradeableLevelData
                     {
                         Level = 4,
-                        CurrencyAmountNeeded = 8000,
+                        CurrencyAmountNeeded = 500,
                         CurrencyType = CurrencyTypes.CoinsCurrency,
                         Power = 100
                     },
@@ -166,6 +182,13 @@ namespace HOG.GameLogic
                         Level = 2,
                         CurrencyAmountNeeded = 50,
                         CurrencyType = CurrencyTypes.MetalCurrency,
+                        Power = 40
+                    },
+                    new HOGUpgradeableLevelData
+                    {
+                        Level = 3,
+                        CurrencyAmountNeeded = 500,
+                        CurrencyType = CurrencyTypes.MetalCurrency,
                         Power = 50
                     },
                     new HOGUpgradeableLevelData
@@ -173,7 +196,7 @@ namespace HOG.GameLogic
                         Level = 3,
                         CurrencyAmountNeeded = 1500,
                         CurrencyType = CurrencyTypes.MetalCurrency,
-                        Power = 70
+                        Power = 100
                     },
                 }
             }
@@ -182,7 +205,7 @@ namespace HOG.GameLogic
 
     //All player saved data
     [Serializable]
-    public class HOGPlayerUpgradeInventoryData
+    public class HOGPlayerUpgradeInventoryData : IHOGSaveData
     {
         public List<HOGUpgradeableData> Upgradeables;
     }
