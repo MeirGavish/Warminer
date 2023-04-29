@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fbfa9710d41fd343b7ab2026eef82ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolName: 2
   coinValue: 5
 --- !u!114 &-1828276565549111441
 MonoBehaviour:

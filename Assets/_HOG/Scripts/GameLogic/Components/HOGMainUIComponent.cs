@@ -64,7 +64,8 @@ namespace  HOG.GameLogic
 
         public void LoadBattle()
         {
-            SceneManager.LoadScene("BattleTD");
+            var battleSceneName = "BattleTD";
+            SceneManager.LoadScene(battleSceneName);
         }
 
         public void LoadIdleMiner()

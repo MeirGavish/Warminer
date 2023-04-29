@@ -93,7 +93,6 @@ namespace HOG.Core
             }
         }
 
-
         public void DestroyPool(PoolNames name)
         {
             if (Pools.TryGetValue(name, out HOGPool pool))

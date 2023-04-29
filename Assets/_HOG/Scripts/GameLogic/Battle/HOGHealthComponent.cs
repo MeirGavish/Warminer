@@ -7,20 +7,30 @@ namespace HOG.GameLogic
 {
     public class HOGHealthComponent : HOGLogicMonoBehaviour
     {
-        [field: SerializeField]
-        public int Health { get; protected set; } = 100;
+        [SerializeField] private int _initHealth = 100;
+
+        private int _health = 100;
 
         // For use within the component
         public Action<GameObject> OnDeathAction { get; set; } = null;
 
+        public void Init(int initHealth)
+        {
+            _initHealth = initHealth;
+        }
+
+        public void Reset()
+        {
+            _health = _initHealth;
+        }
+
         public void DealDamage(int damage)
         {
-            Health -= damage;
-            if (Health < 0)
+            _health -= damage;
+            if (_health < 0)
             {
                 InvokeEvent(Core.HOGEventNames.OnEntityKilled, gameObject);
                 OnDeathAction?.Invoke(gameObject);
-                Destroy(gameObject);
             }
         }
     }

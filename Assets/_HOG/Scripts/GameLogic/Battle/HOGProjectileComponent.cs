@@ -10,6 +10,7 @@ namespace HOG.GameLogic
         [SerializeField]
         protected string[] damagableTags;
 
+        // TODO: Fix
         [field: SerializeField]
         public int Damage { get; set; }
 
@@ -19,8 +20,8 @@ namespace HOG.GameLogic
             if (damagableTags.Contains(collision.gameObject.tag))
             {
                 var healthComponent = collision.gameObject.GetComponent<HOGHealthComponent>();
-                Destroy(gameObject);
                 healthComponent.DealDamage(projectileComponent.Damage);
+                Destroy(gameObject);
             }
         }
     }

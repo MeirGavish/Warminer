@@ -23,7 +23,7 @@ namespace HOG.GameLogic
 
         private void Awake()
         {
-            //Manager.PoolManager.InitPool("Enemy", 40);
+            Manager.PoolManager.InitPool("Enemy", 40);
         }
 
         // Start is called before the first frame update
@@ -49,9 +49,11 @@ namespace HOG.GameLogic
                 Quaternion enemyRotation = Quaternion.LookRotation(Vector3.forward, enemyDirection);
 
                 // TODO: Use pooling
-                GameObject spawnedEnemy = Instantiate(EnemyGameObject, spawnLocation, enemyRotation);
+                HOGPoolable spawnedEnemyPoolable = Manager.PoolManager.GetPoolable(PoolNames.EnemyPool);
+                spawnedEnemyPoolable.transform.position = spawnLocation;
+                spawnedEnemyPoolable.transform.rotation = enemyRotation;
 
-                InvokeEvent(HOGEventNames.OnEnemySpawned, spawnedEnemy);
+                InvokeEvent(HOGEventNames.OnEnemySpawned, spawnedEnemyPoolable.gameObject);
 
                 yield return new WaitForSeconds(SpawnInterval);
             }
