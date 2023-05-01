@@ -2,21 +2,22 @@
 using UnityEngine;
 using HOG.Core;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 namespace HOG.GameLogic
 {
     public class HOGEnemyControllerComponent : HOGPoolable
     {
-        private HOGMovementComponent movementComponent;
-        private HOGHealthComponent healthComponent;
+        [SerializeField] private HOGMovementComponent movementComponent;
+        [SerializeField] private HOGHealthComponent healthComponent;
 
         // TODO: From config?
         [SerializeField] private int coinValue = 3;
+        [SerializeField] private int damage = 5;
+        [SerializeField] private float damageInterval = 1;
 
         void Awake()
         {
-            movementComponent = GetComponent<HOGMovementComponent>();
-            healthComponent = GetComponent<HOGHealthComponent>();
             healthComponent.OnDeathAction = OnDeathAction;
             SceneManager.activeSceneChanged += OnSceneChangedAction;
 
@@ -28,6 +29,7 @@ namespace HOG.GameLogic
             if (collision.gameObject.CompareTag("player"))
             {
                 movementComponent.StopMovement();
+                StartCoroutine(nameof(DamagePlayer), collision.gameObject);
             }
         }
 
@@ -56,7 +58,20 @@ namespace HOG.GameLogic
         public override void OnReturnedToPool() 
         {
             healthComponent.Reset();
+            StopCoroutine(nameof(DamagePlayer));
             base.OnReturnedToPool();
+        }
+
+        private IEnumerator DamagePlayer(GameObject playerObject)
+        {
+            // TODO: Use timing system?
+            var playerHealthComp = playerObject.GetComponent<HOGHealthComponent>();
+
+            while (true)
+            {
+                playerHealthComp.DealDamage(damage);
+                yield return new WaitForSeconds(damageInterval);
+            }
         }
     }
 }

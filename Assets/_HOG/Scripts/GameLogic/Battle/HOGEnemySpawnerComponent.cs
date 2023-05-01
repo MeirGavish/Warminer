@@ -48,7 +48,6 @@ namespace HOG.GameLogic
                 
                 Quaternion enemyRotation = Quaternion.LookRotation(Vector3.forward, enemyDirection);
 
-                // TODO: Use pooling
                 HOGPoolable spawnedEnemyPoolable = Manager.PoolManager.GetPoolable(PoolNames.EnemyPool);
                 spawnedEnemyPoolable.transform.position = spawnLocation;
                 spawnedEnemyPoolable.transform.rotation = enemyRotation;
