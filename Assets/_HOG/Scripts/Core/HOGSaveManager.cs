@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using Newtonsoft.Json;
+using Unity.Plastic.Newtonsoft.Json;
 using System.IO;
 
 namespace HOG.Core

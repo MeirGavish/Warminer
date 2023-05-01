@@ -1,0 +1,62 @@
+{
+  "UpgradeableConfigs": [
+    {
+      "UpgradableTypeID": "ClickPowerUpgrade",
+      "UpgradableLevelData": [
+        {
+          "Level": 1,
+          "CurrencyAmountNeeded": 0,
+          "CurrencyType": "CoinsCurrency",
+          "Power": 1
+        },
+        {
+          "Level": 2,
+          "CurrencyAmountNeeded": 30,
+          "CurrencyType": "CoinsCurrency",
+          "Power": 15
+        },
+        {
+          "Level": 3,
+          "CurrencyAmountNeeded": 200,
+          "CurrencyType": "CoinsCurrency",
+          "Power": 40
+        },
+        {
+          "Level": 4,
+          "CurrencyAmountNeeded": 500,
+          "CurrencyType": "CoinsCurrency",
+          "Power": 100
+        }
+      ]
+    },
+    {
+      "UpgradableTypeID": "DamageUpgrade",
+      "UpgradableLevelData": [
+        {
+          "Level": 1,
+          "CurrencyAmountNeeded": 0,
+          "CurrencyType": "MetalCurrency",
+          "Power": 30
+        },
+        {
+          "Level": 2,
+          "CurrencyAmountNeeded": 50,
+          "CurrencyType": "MetalCurrency",
+          "Power": 40
+        },
+        {
+          "Level": 3,
+          "CurrencyAmountNeeded": 500,
+          "CurrencyType": "MetalCurrency",
+          "Power": 50
+        },
+        {
+          "Level": 4,
+          "CurrencyAmountNeeded": 1500,
+          "CurrencyType": "MetalCurrency",
+          "Power": 100
+        }
+      ]
+    }
+  ]
+}
