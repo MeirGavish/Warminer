@@ -305,6 +305,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9090151790159210597}
     m_Modifications:
+    - target: {fileID: 1451461704791429598, guid: dbc54bcb27b48a44cb22929fe777d707, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5911750943332132000, guid: dbc54bcb27b48a44cb22929fe777d707, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -335,11 +339,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5911750943332132000, guid: dbc54bcb27b48a44cb22929fe777d707, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2.56
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5911750943332132000, guid: dbc54bcb27b48a44cb22929fe777d707, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 3.22
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 5911750943332132000, guid: dbc54bcb27b48a44cb22929fe777d707, type: 3}
       propertyPath: m_LocalPosition.x
@@ -392,6 +396,10 @@ PrefabInstance:
     - target: {fileID: 5941889008325824374, guid: dbc54bcb27b48a44cb22929fe777d707, type: 3}
       propertyPath: m_Name
       value: HealthBarCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8077959917893545146, guid: dbc54bcb27b48a44cb22929fe777d707, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.10000038
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1581703186995774988, guid: dbc54bcb27b48a44cb22929fe777d707, type: 3}
