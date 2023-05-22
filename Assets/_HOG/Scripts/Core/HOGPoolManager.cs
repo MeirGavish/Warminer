@@ -63,7 +63,7 @@ namespace HOG.Core
             {
                 if (pool.AvailablePoolables.TryDequeue(out HOGPoolable poolable))
                 {
-                    Debug.Log($"GetPoolable - {poolName}");
+                    HOGDebug.Log($"GetPoolable - {poolName}");
 
                     poolable.OnTakenFromPool();
                     
@@ -71,14 +71,14 @@ namespace HOG.Core
                     poolable.gameObject.SetActive(true);
                     return poolable;
                 }
-                
+
                 //Create more
-                Debug.Log($"pool - {poolName} no enough poolables, used poolables {pool.UsedPoolables.Count}");
+                HOGDebug.Log($"pool - {poolName} no enough poolables, used poolables {pool.UsedPoolables.Count}");
 
                 return null;
             }
 
-            Debug.Log($"pool - {poolName} wasn't initialized");
+            HOGDebug.Log($"pool - {poolName} wasn't initialized");
             return null;
         }
         

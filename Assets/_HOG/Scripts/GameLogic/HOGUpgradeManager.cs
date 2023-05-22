@@ -9,18 +9,18 @@ namespace HOG.GameLogic
     public class HOGUpgradeManager
     {
         public HOGPlayerUpgradeInventoryData PlayerUpgradeInventoryData; //Player Saved Data
-        public HOGUpgradeManagerConfig UpgradeConfig; //From cloud
+        public HOGUpgradeManagerConfig UpgradeConfig = new(); //From cloud
 
         //MockData
         //Load From Save Data On Device (Future)
         //Load Config From Load
         public HOGUpgradeManager()
         {
-            HOGManager.Instance.ConfigManager.GetConfigAsync<HOGUpgradeManagerConfig>("upgrade_config", 
-                delegate(HOGUpgradeManagerConfig config)
-                {
-                    UpgradeConfig = config;
-                });
+            //HOGManager.Instance.ConfigManager.GetConfigAsync<HOGUpgradeManagerConfig>("upgrade_config", 
+            //    delegate(HOGUpgradeManagerConfig config)
+            //    {
+            //        UpgradeConfig = config;
+            //    });
 
             if (PlayerUpgradeInventoryData == null)
             {
@@ -134,7 +134,76 @@ namespace HOG.GameLogic
     [Serializable]
     public class HOGUpgradeManagerConfig
     {
-        public List<HOGUpgradeableConfig> UpgradeableConfigs;
+        public List<HOGUpgradeableConfig> UpgradeableConfigs = new List<HOGUpgradeableConfig>(){new HOGUpgradeableConfig
+            {
+                UpgradableTypeID = UpgradeablesTypeID.ClickPowerUpgrade,
+                UpgradableLevelData = new List<HOGUpgradeableLevelData>(){
+                    new HOGUpgradeableLevelData
+                    {
+                        Level = 1,
+                        CurrencyAmountNeeded = 0,
+                        CurrencyType = CurrencyTypes.CoinsCurrency,
+                        Power = 1
+                    },
+                    new HOGUpgradeableLevelData
+                    {
+                        Level = 2,
+                        CurrencyAmountNeeded = 30,
+                        CurrencyType = CurrencyTypes.CoinsCurrency,
+                        Power = 15
+                    },
+                    new HOGUpgradeableLevelData
+                    {
+                        Level = 3,
+                        CurrencyAmountNeeded = 200,
+                        CurrencyType = CurrencyTypes.CoinsCurrency,
+                        Power = 40
+                    },
+                    new HOGUpgradeableLevelData
+                    {
+                        Level = 4,
+                        CurrencyAmountNeeded = 500,
+                        CurrencyType = CurrencyTypes.CoinsCurrency,
+                        Power = 100
+                    },
+
+                }
+            },
+            new HOGUpgradeableConfig
+            {
+                UpgradableTypeID = UpgradeablesTypeID.DamageUpgrade,
+                UpgradableLevelData = new List<HOGUpgradeableLevelData>(){
+                    new HOGUpgradeableLevelData
+                    {
+                        Level = 1,
+                        CurrencyAmountNeeded = 0,
+                        CurrencyType = CurrencyTypes.MetalCurrency,
+                        Power = 30
+                    },
+                    new HOGUpgradeableLevelData
+                    {
+                        Level = 2,
+                        CurrencyAmountNeeded = 50,
+                        CurrencyType = CurrencyTypes.MetalCurrency,
+                        Power = 40
+                    },
+                    new HOGUpgradeableLevelData
+                    {
+                        Level = 3,
+                        CurrencyAmountNeeded = 500,
+                        CurrencyType = CurrencyTypes.MetalCurrency,
+                        Power = 50
+                    },
+                    new HOGUpgradeableLevelData
+                    {
+                        Level = 3,
+                        CurrencyAmountNeeded = 1500,
+                        CurrencyType = CurrencyTypes.MetalCurrency,
+                        Power = 100
+                    },
+                }
+            }
+        };
     }
 
     //All player saved data
