@@ -1,5 +1,5 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using Debug = UnityEngine.Debug;
+using System;
 
 namespace HOG.Core
 {
@@ -10,6 +10,13 @@ namespace HOG.Core
         {
             // TODO: Context?
             Debug.Log(message);
+        }
+
+        [System.Diagnostics.Conditional("LOGS_ENABLE")]
+        public static void LogException(object message)
+        {
+            // TODO: Context?
+            Debug.LogException(new Exception(message.ToString()));
         }
     }
 }
