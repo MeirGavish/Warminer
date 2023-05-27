@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "255645006960",
+    "project_id": "hog-adv-warminer",
+    "storage_bucket": "hog-adv-warminer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255645006960:android:6844201c02f8f56bd1c8b5",
+        "android_client_info": {
+          "package_name": "com.hog.adv.warminer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "255645006960-hnu8ga47or9a5fiapl57qfl6u70gc3d0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg3Qz4itnWdxzwbuNgDB1k5pMHp1jqx7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "255645006960-hnu8ga47or9a5fiapl57qfl6u70gc3d0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255645006960:android:09a55d8768d1406cd1c8b5",
+        "android_client_info": {
+          "package_name": "com.hog.warminer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "255645006960-hnu8ga47or9a5fiapl57qfl6u70gc3d0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg3Qz4itnWdxzwbuNgDB1k5pMHp1jqx7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "255645006960-hnu8ga47or9a5fiapl57qfl6u70gc3d0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

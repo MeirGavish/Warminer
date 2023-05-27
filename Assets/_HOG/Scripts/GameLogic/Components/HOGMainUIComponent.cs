@@ -23,7 +23,7 @@ namespace  HOG.GameLogic
         {
             if (CurrencyTypesOfTexts.Length != CurrencyTexts.Length)
             {
-                Debug.LogError("Mismatching currency types and texts length!");
+                HOGDebug.LogError("Mismatching currency types and texts length!");
                 return;
             }
 

@@ -76,7 +76,7 @@ namespace HOG.GameLogic
             }
             else
             {
-                Debug.LogError($"UpgradeItemByID {typeID.ToString()} tried upgrade and there is not enough");
+                HOGDebug.LogError($"{nameof(UpgradeItemByID)} {typeID} tried to upgrade and there is not enough");
             }
         }
 
