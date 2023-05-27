@@ -12,6 +12,7 @@ namespace HOG.Core
         public HOGPoolManager PoolManager;
         public HOGSaveManager SaveManager;
         public HOGConfigManager ConfigManager;
+        public HOGCrashManager CrashManager;
         public HOGManager()
         {
             if (Instance != null)
@@ -24,6 +25,7 @@ namespace HOG.Core
 
         public void LoadManager(Action onComplete)
         {
+            CrashManager = new HOGCrashManager();
             EventsManager = new HOGEventsManager();
             FactoryManager = new HOGFactoryManager();
             PoolManager = new HOGPoolManager();

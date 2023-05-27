@@ -56,24 +56,27 @@ namespace HOG.GameLogic
         {
             var upgradeable = GetUpgradeableByID(typeID);
 
-            if (upgradeable != null)
+            if (upgradeable == null)
             {
-                var upgradeableConfig = GetHogUpgradeableConfigByID(typeID);
-                HOGUpgradeableLevelData levelData = upgradeableConfig.UpgradableLevelData[upgradeable.CurrentLevel + 1];
-                int amountToReduce = levelData.CurrencyAmountNeeded;
-                CurrencyTypes currencyType = levelData.CurrencyType;
+                HOGManager.Instance.CrashManager.LogExceptionHandling($"{nameof(UpgradeItemByID)} {typeID.ToString()} failed because upgradable was null");
+                return;
+            }
 
-                if (HOGGameLogic.Instance.CurrencyManager.TryUseCurrency(currencyType, amountToReduce))
-                {
-                    upgradeable.CurrentLevel++;
-                    HOGManager.Instance.EventsManager.InvokeEvent(HOGEventNames.OnUpgraded, typeID);
+            var upgradeableConfig = GetHogUpgradeableConfigByID(typeID);
+            HOGUpgradeableLevelData levelData = upgradeableConfig.UpgradableLevelData[upgradeable.CurrentLevel + 1];
+            int amountToReduce = levelData.CurrencyAmountNeeded;
+            CurrencyTypes currencyType = levelData.CurrencyType;
 
-                    HOGManager.Instance.SaveManager.Save(PlayerUpgradeInventoryData);
-                }
-                else
-                {
-                    Debug.LogError($"UpgradeItemByID {typeID.ToString()} tried upgrade and there is not enough");
-                }
+            if (HOGGameLogic.Instance.CurrencyManager.TryUseCurrency(currencyType, amountToReduce))
+            {
+                upgradeable.CurrentLevel++;
+                HOGManager.Instance.EventsManager.InvokeEvent(HOGEventNames.OnUpgraded, typeID);
+
+                HOGManager.Instance.SaveManager.Save(PlayerUpgradeInventoryData);
+            }
+            else
+            {
+                Debug.LogError($"UpgradeItemByID {typeID.ToString()} tried upgrade and there is not enough");
             }
         }
 

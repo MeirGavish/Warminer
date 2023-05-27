@@ -64,6 +64,7 @@ namespace HOG.GameLogic
                 ChangeCurrencyByAmountByType(currencyType, -amountToReduce);
             }
 
+            HOGManager.Instance.CrashManager.LogBreadcrumb($"User doesn't have enough currency of type {currencyType.ToString()}");
             return hasEnough;
         }
     }
