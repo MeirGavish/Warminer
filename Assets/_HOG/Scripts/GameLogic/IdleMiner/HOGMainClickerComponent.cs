@@ -16,7 +16,6 @@ namespace  HOG.GameLogic
 
         public void OnMouseUpAsButton()
         {
-            //TODO: Convert level to power from config
             var power = GameLogic.UpgradeManager.GetPowerByIDAndLevel(clickUpgradeData.upgradableTypeID, clickUpgradeData.CurrentLevel);
             
             GameLogic.CurrencyManager.ChangeCurrencyByAmountByType(CurrencyTypes.MetalCurrency, power);
