@@ -24,19 +24,12 @@ namespace HOG.GameLogic
 
         private readonly Queue<GameObject> enemyQueue = new();
 
-        protected HOGUpgradeableData damageUpgradeData;
         protected HOGProjectileComponent projectileComponent;
 
         void Awake()
         {
             AddListener(Core.HOGEventNames.OnEnemySpawned, OnEnemySpawned);
             AddListener(Core.HOGEventNames.OnEntityKilled, OnEnemyDestroyed);
-
-            damageUpgradeData = GameLogic.UpgradeManager.GetUpgradeableByID(UpgradeablesTypeID.DamageUpgrade);
-
-            int projectileDamage = GameLogic.UpgradeManager.GetPowerByIDAndLevel(UpgradeablesTypeID.DamageUpgrade, damageUpgradeData.CurrentLevel);
-            projectileComponent = ProjectileObject.GetComponent<HOGProjectileComponent>();
-            projectileComponent.Damage = projectileDamage;
 
             Manager.PoolManager.InitPool("PlayerProjectile", 30);
         }
@@ -63,10 +56,23 @@ namespace HOG.GameLogic
 
         void Shoot()
         {
-            HOGPoolable spawnedProjectile = Manager.PoolManager.GetPoolable(PoolNames.PlayerProjectilePool);
-            // TODO: Use pooling
-            spawnedProjectile.transform.position = ProjectileSpawn.transform.position;
-            spawnedProjectile.transform.rotation = ProjectileSpawn.transform.rotation;
+            var spawnedProjectile = (HOGProjectileComponent)Manager.PoolManager.GetPoolable
+            (
+                PoolNames.PlayerProjectilePool,
+                ProjectileSpawn.transform.position,
+                ProjectileSpawn.transform.rotation
+            );
+
+            
+
+            var damageUpgradeData = GameLogic.UpgradeManager.GetUpgradeableByID(UpgradeablesTypeID.DamageUpgrade);
+
+            spawnedProjectile.Damage = GameLogic.UpgradeManager.GetPowerByIDAndLevel
+            (
+                UpgradeablesTypeID.DamageUpgrade, 
+                damageUpgradeData.CurrentLevel
+            );
+
         }
 
         protected void SetTarget(GameObject newTarget)

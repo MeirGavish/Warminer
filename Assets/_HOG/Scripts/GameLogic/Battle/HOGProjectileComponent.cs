@@ -18,11 +18,10 @@ namespace HOG.GameLogic
         // TODO: Change to layer collision system
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            var projectileComponent = gameObject.GetComponent<HOGProjectileComponent>();
             if (damagableTags.Contains(collision.gameObject.tag))
             {
                 var healthComponent = collision.gameObject.GetComponent<HOGHealthComponent>();
-                healthComponent.DealDamage(projectileComponent.Damage);
+                healthComponent.DealDamage(Damage);
                 Manager.PoolManager.ReturnPoolable(this);
             }
         }

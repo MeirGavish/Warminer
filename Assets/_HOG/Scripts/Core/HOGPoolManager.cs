@@ -32,7 +32,6 @@ namespace HOG.Core
         {
             if (Pools.ContainsKey(original.poolName))
             {
-                // Pool already init
                 HOGDebug.Log($"{nameof(InitPool)} already initialized");
                 return;
             }
@@ -81,6 +80,15 @@ namespace HOG.Core
 
             pool.UsedPoolables.Enqueue(poolable);
             poolable.gameObject.SetActive(true);
+            return poolable;
+        }
+
+        public HOGPoolable GetPoolable(PoolNames poolName, Vector3 position, Quaternion rotation)
+        {
+            HOGPoolable poolable = GetPoolable(PoolNames.PlayerProjectilePool);
+            poolable.transform.position = position;
+            poolable.transform.rotation = rotation;
+
             return poolable;
         }
 
