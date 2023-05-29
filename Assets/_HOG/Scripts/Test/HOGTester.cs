@@ -38,6 +38,10 @@ namespace HOG.Test
                 Manager.PoolManager.ReturnPoolable(triangle);
             }
 
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                throw new Exception("test exception, ignore");
+            }    
         }
     }
 
