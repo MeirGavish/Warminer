@@ -14,9 +14,6 @@ namespace HOG.GameLogic
         private float WaitBeforeSpawnStart;
 
         [SerializeField]
-        private GameObject EnemyGameObject;
-
-        [SerializeField]
         private GameObject PlayerInstance;
 
         private bool SpawningEnemies = true;

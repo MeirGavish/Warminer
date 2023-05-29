@@ -6,6 +6,7 @@ namespace HOG.GameLogic
 {
     public class HOGFaceCameraComponent : HOGLogicMonoBehaviour
     {
+        // TODO: Switch to single canvas and maybe delete this component
         private Camera cam;
 
         private void OnEnable()

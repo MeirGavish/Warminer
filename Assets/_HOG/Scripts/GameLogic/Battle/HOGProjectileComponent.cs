@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using HOG.Core;
 
 namespace HOG.GameLogic
 {
-    public class HOGProjectileComponent : HOGLogicMonoBehaviour
+    public class HOGProjectileComponent : HOGPoolable
     {
         [SerializeField]
         protected string[] damagableTags;
@@ -14,6 +15,7 @@ namespace HOG.GameLogic
         [field: SerializeField]
         public int Damage { get; set; }
 
+        // TODO: Change to layer collision system
         private void OnTriggerEnter2D(Collider2D collision)
         {
             var projectileComponent = gameObject.GetComponent<HOGProjectileComponent>();
@@ -21,7 +23,7 @@ namespace HOG.GameLogic
             {
                 var healthComponent = collision.gameObject.GetComponent<HOGHealthComponent>();
                 healthComponent.DealDamage(projectileComponent.Damage);
-                Destroy(gameObject);
+                Manager.PoolManager.ReturnPoolable(this);
             }
         }
     }

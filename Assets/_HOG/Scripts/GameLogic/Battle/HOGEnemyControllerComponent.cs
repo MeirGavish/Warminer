@@ -16,11 +16,11 @@ namespace HOG.GameLogic
         [SerializeField] private int damage = 5;
         [SerializeField] private float damageInterval = 1;
 
-        void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             healthComponent.OnDeathAction = OnDeathAction;
-            SceneManager.activeSceneChanged += OnSceneChangedAction;
-
+            
             Manager.PoolManager.InitPool("TextToast", 15);
         }
 
@@ -41,11 +41,6 @@ namespace HOG.GameLogic
             scoreText.transform.position = transform.position + Vector3.forward * 5;
             scoreText.Init(coinValue);
 
-            Manager.PoolManager.ReturnPoolable(this);
-        }
-
-        private void OnSceneChangedAction(Scene prevScene, Scene nextScene)
-        {
             Manager.PoolManager.ReturnPoolable(this);
         }
 

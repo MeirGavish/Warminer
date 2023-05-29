@@ -17,6 +17,7 @@ namespace HOG.Core
         
         public void InitPool(PoolNames poolName, int amount)
         {
+            // TODO: Implement or delete
             //List Of Originals 
             //Linq where PoolNames == poolName
         }
@@ -32,6 +33,7 @@ namespace HOG.Core
             if (Pools.ContainsKey(original.poolName))
             {
                 // Pool already init
+                HOGDebug.Log($"{nameof(InitPool)} already initialized");
                 return;
             }
 
@@ -59,30 +61,30 @@ namespace HOG.Core
 
         public HOGPoolable GetPoolable(PoolNames poolName)
         {
-            if (Pools.TryGetValue(poolName, out HOGPool pool))
+            if (!Pools.TryGetValue(poolName, out HOGPool pool))
             {
-                if (pool.AvailablePoolables.TryDequeue(out HOGPoolable poolable))
-                {
-                    HOGDebug.Log($"GetPoolable - {poolName}");
+                HOGDebug.Log($"pool - {poolName} wasn't initialized");
+                return null;
+            }
 
-                    poolable.OnTakenFromPool();
-                    
-                    pool.UsedPoolables.Enqueue(poolable);
-                    poolable.gameObject.SetActive(true);
-                    return poolable;
-                }
-
+            if (!pool.AvailablePoolables.TryDequeue(out HOGPoolable poolable))
+            {
                 //Create more
                 HOGDebug.Log($"pool - {poolName} no enough poolables, used poolables {pool.UsedPoolables.Count}");
 
                 return null;
             }
 
-            HOGDebug.Log($"pool - {poolName} wasn't initialized");
-            return null;
+            HOGDebug.Log($"GetPoolable - {poolName}");
+
+            poolable.OnTakenFromPool();
+
+            pool.UsedPoolables.Enqueue(poolable);
+            poolable.gameObject.SetActive(true);
+            return poolable;
         }
-        
-        
+
+
         public void ReturnPoolable(HOGPoolable poolable)
         {
             if (Pools.TryGetValue(poolable.poolName, out HOGPool pool))
@@ -131,6 +133,7 @@ namespace HOG.Core
         NA = -1,
         ScoreToast = 0,
         TrianglePool = 1,
-        EnemyPool = 2
+        EnemyPool = 2,
+        PlayerProjectilePool = 3
     }
 }

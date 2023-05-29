@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1bee06818163e47bfbeb2b7794d182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolName: 3
   damagableTags:
   - Enemy
   <Damage>k__BackingField: 30

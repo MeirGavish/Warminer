@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using HOG.Core;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +27,7 @@ namespace HOG.GameLogic
         protected HOGUpgradeableData damageUpgradeData;
         protected HOGProjectileComponent projectileComponent;
 
-        private void Awake()
+        void Awake()
         {
             AddListener(Core.HOGEventNames.OnEnemySpawned, OnEnemySpawned);
             AddListener(Core.HOGEventNames.OnEntityKilled, OnEnemyDestroyed);
@@ -36,6 +37,8 @@ namespace HOG.GameLogic
             int projectileDamage = GameLogic.UpgradeManager.GetPowerByIDAndLevel(UpgradeablesTypeID.DamageUpgrade, damageUpgradeData.CurrentLevel);
             projectileComponent = ProjectileObject.GetComponent<HOGProjectileComponent>();
             projectileComponent.Damage = projectileDamage;
+
+            Manager.PoolManager.InitPool("PlayerProjectile", 30);
         }
 
         private void OnDisable()
@@ -60,10 +63,10 @@ namespace HOG.GameLogic
 
         void Shoot()
         {
+            HOGPoolable spawnedProjectile = Manager.PoolManager.GetPoolable(PoolNames.PlayerProjectilePool);
             // TODO: Use pooling
-            Instantiate(ProjectileObject,
-                        ProjectileSpawn.transform.position,
-                        ProjectileSpawn.transform.rotation);
+            spawnedProjectile.transform.position = ProjectileSpawn.transform.position;
+            spawnedProjectile.transform.rotation = ProjectileSpawn.transform.rotation;
         }
 
         protected void SetTarget(GameObject newTarget)
