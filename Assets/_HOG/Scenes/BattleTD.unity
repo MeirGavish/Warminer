@@ -820,7 +820,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnInterval: 3
   WaitBeforeSpawnStart: 3
-  EnemyGameObject: {fileID: 3419442635592454684, guid: 1dd2fe65166b3b54392638cf04808cc6, type: 3}
   PlayerInstance: {fileID: 9090151789864900063}
 --- !u!1 &1656002662
 GameObject:

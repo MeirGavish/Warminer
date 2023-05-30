@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2351450654917344838}
   - component: {fileID: 1134900508091331103}
   m_Layer: 0
-  m_Name: Square
+  m_Name: ShootingBarrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,6 +116,67 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7807508824430060549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5669818640098324292}
+  - component: {fileID: 8664239921446069996}
+  - component: {fileID: 212133394696412986}
+  m_Layer: 0
+  m_Name: Range
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5669818640098324292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7807508824430060549}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9090151790159210597}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &8664239921446069996
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7807508824430060549}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 6.88
+--- !u!114 &212133394696412986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7807508824430060549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e215d15b8152b4fb45c59ac9f23bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9090151790159210596
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,6 +212,7 @@ Transform:
   - {fileID: 2013788394818084785}
   - {fileID: 9090151791252929295}
   - {fileID: 2351450654917344838}
+  - {fileID: 5669818640098324292}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -184,9 +246,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectileSpawn: {fileID: 399436412129726526}
   ProjectileObject: {fileID: 1129232449728576016, guid: c3c453f5f152f5448b213cc3b8faf090, type: 3}
-  StartShootingDelay: 1
+  StartShootingDelay: 0
   ShootingInterval: 1
-  range: 1
+  rangeComponent: {fileID: 212133394696412986}
 --- !u!114 &7473983986632983685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +287,7 @@ GameObject:
   - component: {fileID: 9090151791252929295}
   - component: {fileID: 9090151791252929292}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

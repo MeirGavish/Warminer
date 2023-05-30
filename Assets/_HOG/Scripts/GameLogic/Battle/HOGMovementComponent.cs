@@ -6,25 +6,23 @@ namespace HOG.GameLogic
 {
     public class HOGMovementComponent : HOGLogicMonoBehaviour
     {
-        [SerializeField]
-        private float speed = 1;
+        [SerializeField] private float speed = 1;
 
-        private Rigidbody2D rb;
+        [SerializeField] private Rigidbody2D rigid_body;
 
         void Start()
         {
-            rb = GetComponent<Rigidbody2D>();
             StartMovement();
         }
 
         public void StopMovement()
         {
-            rb.velocity = Vector2.zero;
+            rigid_body.velocity = Vector2.zero;
         }
 
         public void StartMovement()
         {
-            rb.velocity = transform.up * speed;
+            rigid_body.velocity = transform.up * speed;
         }
     }
 }

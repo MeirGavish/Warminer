@@ -8,12 +8,11 @@ namespace HOG.GameLogic
 {
     public class HOGProjectileComponent : HOGPoolable
     {
-        [SerializeField]
-        protected string[] damagableTags;
+        [SerializeField] protected string[] damagableTags;
 
-        // TODO: Fix
-        [field: SerializeField]
-        public int Damage { get; set; }
+        [SerializeField] protected HOGMovementComponent movementComponent;
+
+        public int Damage;
 
         // TODO: Change to layer collision system
         private void OnTriggerEnter2D(Collider2D collision)
@@ -24,6 +23,16 @@ namespace HOG.GameLogic
                 healthComponent.DealDamage(Damage);
                 Manager.PoolManager.ReturnPoolable(this);
             }
+        }
+
+        public void StartMovement()
+        {
+            movementComponent.StartMovement();
+        }
+
+        public void StopMovement()
+        {
+            movementComponent.StopMovement();
         }
     }
 }

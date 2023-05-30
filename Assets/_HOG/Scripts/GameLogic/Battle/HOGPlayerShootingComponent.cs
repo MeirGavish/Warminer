@@ -16,7 +16,7 @@ namespace HOG.GameLogic
         // TODO: Should be set from weapon/config
         [SerializeField] protected float ShootingInterval = 1;
 
-        [SerializeField]  protected float range = 1;
+        [SerializeField] protected HOGRangeComponent rangeComponent;
 
         protected GameObject Target = null;
 
@@ -24,19 +24,16 @@ namespace HOG.GameLogic
 
         private readonly Queue<GameObject> enemyQueue = new();
 
-        protected HOGProjectileComponent projectileComponent;
-
         void Awake()
         {
-            AddListener(Core.HOGEventNames.OnEnemySpawned, OnEnemySpawned);
+            rangeComponent.OnEnterRange = OnEnemyEnterRange;
             AddListener(Core.HOGEventNames.OnEntityKilled, OnEnemyDestroyed);
 
-            Manager.PoolManager.InitPool("PlayerProjectile", 30);
+            Manager.PoolManager.InitPool("PlayerProjectile", 10);
         }
 
         private void OnDisable()
         {
-            RemoveListener(Core.HOGEventNames.OnEnemySpawned, OnEnemySpawned);
             RemoveListener(Core.HOGEventNames.OnEntityKilled, OnEnemyDestroyed);
         }
 
@@ -63,8 +60,6 @@ namespace HOG.GameLogic
                 ProjectileSpawn.transform.rotation
             );
 
-            
-
             var damageUpgradeData = GameLogic.UpgradeManager.GetUpgradeableByID(UpgradeablesTypeID.DamageUpgrade);
 
             spawnedProjectile.Damage = GameLogic.UpgradeManager.GetPowerByIDAndLevel
@@ -73,6 +68,7 @@ namespace HOG.GameLogic
                 damageUpgradeData.CurrentLevel
             );
 
+            spawnedProjectile.StartMovement();
         }
 
         protected void SetTarget(GameObject newTarget)
@@ -89,7 +85,10 @@ namespace HOG.GameLogic
 
         IEnumerator ShootingCoroutine()
         {
-            yield return new WaitForSeconds(StartShootingDelay);
+            if (StartShootingDelay > 0)
+            {
+                yield return new WaitForSeconds(StartShootingDelay);
+            }
 
             while (isShooting)
             {
@@ -102,27 +101,33 @@ namespace HOG.GameLogic
             }
         }
 
-        void OnEnemySpawned(object spawnedEnemy)
+        void OnEnemyEnterRange(GameObject spawnedEnemy)
         {
-            GameObject spawnedEnemyGO = (GameObject)spawnedEnemy;
-            enemyQueue.Enqueue(spawnedEnemyGO);
+            if (!spawnedEnemy.CompareTag("Enemy"))
+            {
+                return;
+            }
+
+            enemyQueue.Enqueue(spawnedEnemy);
 
             if (Target == null)
             {
                 enemyQueue.Dequeue();
-                SetTarget(spawnedEnemyGO);
+                SetTarget(spawnedEnemy);
             }
         }
 
         void OnEnemyDestroyed(object DestroyedEntity)
         {
             GameObject DestroyedEntityGO = (GameObject)DestroyedEntity;
-            if (DestroyedEntityGO.CompareTag("Enemy"))
+            if (!DestroyedEntityGO.CompareTag("Enemy"))
             {
-                GameObject newTarget;
-                enemyQueue.TryDequeue(out newTarget);
-                SetTarget(newTarget);
+                return;
             }
+
+            GameObject newTarget;
+            enemyQueue.TryDequeue(out newTarget);
+            SetTarget(newTarget);
         }
     }
 }

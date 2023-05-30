@@ -86,6 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  rigid_body: {fileID: 3045151443420156662}
 --- !u!114 &6037713514255072725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +102,7 @@ MonoBehaviour:
   poolName: 3
   damagableTags:
   - Enemy
+  movementComponent: {fileID: 3883755674429713327}
   <Damage>k__BackingField: 30
 --- !u!1 &4797042892377279227
 GameObject:
