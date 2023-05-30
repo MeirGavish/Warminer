@@ -9,7 +9,8 @@ namespace HOG.GameLogic
 
         public HOGCurrencyManager CurrencyManager;
         public HOGUpgradeManager UpgradeManager;
-        
+        public HOGWaveManager WaveManager;
+
         public HOGGameLogic()
         {
             if (Instance != null)
@@ -24,7 +25,8 @@ namespace HOG.GameLogic
         {
             CurrencyManager = new HOGCurrencyManager();
             UpgradeManager = new HOGUpgradeManager();
-            
+            WaveManager = new HOGWaveManager();
+
             onComplete.Invoke();
         }
     }

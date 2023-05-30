@@ -25,15 +25,9 @@ namespace HOG.GameLogic
             }
         }
 
-        public void StartMovement()
-        {
-            movementComponent.StartMovement();
-        }
-
-        public void StopMovement()
-        {
-            movementComponent.StopMovement();
-        }
+        public void StartMovement() => movementComponent.StartMovement();
+        public void StopMovement() => movementComponent.StopMovement();
+       
     }
 }
 

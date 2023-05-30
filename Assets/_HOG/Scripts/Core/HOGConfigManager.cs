@@ -47,6 +47,12 @@ namespace HOG.Core
         public void GetConfigAsync<T>(string configID, Action<T> onComplete)
         {
             var saveJson = FirebaseRemoteConfig.DefaultInstance.GetValue(configID).StringValue;
+
+            if (saveJson == null)
+            {
+                HOGDebug.LogError($"Failed to retrieve config {configID}");
+            }
+
             var saveData = JsonConvert.DeserializeObject<T>(saveJson);
             onComplete.Invoke(saveData);
         }

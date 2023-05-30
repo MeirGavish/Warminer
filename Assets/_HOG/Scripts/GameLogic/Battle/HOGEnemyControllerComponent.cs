@@ -44,11 +44,8 @@ namespace HOG.GameLogic
             Manager.PoolManager.ReturnPoolable(this);
         }
 
-        public override void OnTakenFromPool()
-        {
-            //movementComponent.StartMovement();
-            base.OnTakenFromPool();
-        }
+        public void StartMovement() => movementComponent.StartMovement();
+        public void StopMovement() => movementComponent.StopMovement();
 
         public override void OnReturnedToPool() 
         {

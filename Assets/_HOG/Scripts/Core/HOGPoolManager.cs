@@ -32,7 +32,6 @@ namespace HOG.Core
         {
             if (Pools.ContainsKey(original.poolName))
             {
-                HOGDebug.Log($"{nameof(InitPool)} already initialized");
                 return;
             }
 
@@ -55,26 +54,24 @@ namespace HOG.Core
                     };
 
                     Pools.Add(original.poolName, pool);
-                });
+                }
+            );
         }
 
         public HOGPoolable GetPoolable(PoolNames poolName)
         {
             if (!Pools.TryGetValue(poolName, out HOGPool pool))
             {
-                HOGDebug.Log($"pool - {poolName} wasn't initialized");
                 return null;
             }
 
             if (!pool.AvailablePoolables.TryDequeue(out HOGPoolable poolable))
             {
-                //Create more
+                // TODO: Create more, variable pool sizes
                 HOGDebug.Log($"pool - {poolName} no enough poolables, used poolables {pool.UsedPoolables.Count}");
 
                 return null;
             }
-
-            HOGDebug.Log($"GetPoolable - {poolName}");
 
             poolable.OnTakenFromPool();
 
@@ -85,7 +82,7 @@ namespace HOG.Core
 
         public HOGPoolable GetPoolable(PoolNames poolName, Vector3 position, Quaternion rotation)
         {
-            HOGPoolable poolable = GetPoolable(PoolNames.PlayerProjectilePool);
+            HOGPoolable poolable = GetPoolable(poolName);
             poolable.transform.position = position;
             poolable.transform.rotation = rotation;
 
