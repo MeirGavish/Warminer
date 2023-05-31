@@ -45,9 +45,15 @@ namespace HOG.GameLogic
                                 {
                                     upgradableTypeID = UpgradeablesTypeID.DamageUpgrade,
                                     CurrentLevel = 0
+                                },
+                                new HOGUpgradeableData
+                                {
+                                    upgradableTypeID = UpgradeablesTypeID.FireRateUpgrade,
+                                    CurrentLevel = 0
                                 }
                             }
                         };
+
                     }
                 });
             }
@@ -94,14 +100,14 @@ namespace HOG.GameLogic
         }
 
         // TODO: Don't use, delete?
-        public int GetPowerByIDAndLevel(UpgradeablesTypeID typeID, int level)
+        public float GetPowerByIDAndLevel(UpgradeablesTypeID typeID, int level)
         {
             var upgradeableConfig = GetHogUpgradeableConfigByID(typeID);
             var power = upgradeableConfig.UpgradableLevelData[level].Power;
             return power;
         }
 
-        public int GetPowerAtCurrLevelByID(UpgradeablesTypeID typeID)
+        public float GetPowerAtCurrLevelByID(UpgradeablesTypeID typeID)
         {
             return GetPowerByIDAndLevel(typeID, GetUpgradeableByID(typeID).CurrentLevel);
         }
@@ -123,7 +129,7 @@ namespace HOG.GameLogic
         public int CurrencyAmountNeeded;
         public CurrencyTypes CurrencyType;
         public string ArtItem;
-        public int Power;   
+        public float Power;   
     }
 
     //Per Item Config
@@ -152,6 +158,7 @@ namespace HOG.GameLogic
     public enum UpgradeablesTypeID
     {
         ClickPowerUpgrade = 0,
-        DamageUpgrade
+        DamageUpgrade,
+        FireRateUpgrade
     }
 }

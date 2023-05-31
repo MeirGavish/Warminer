@@ -47,7 +47,7 @@ namespace HOG.GameLogic
                     enemiesLeftThisWave = wavesData[currWaveIdx].NumEnemies;
                 }
 
-                yield return new WaitForSeconds(wavesData[currWaveIdx].SpawnInterval);
+                yield return new WaitForSeconds(1.0f/wavesData[currWaveIdx].SpawnRate);
 
                 float distanceToPlayer = Vector2.Distance(transform.position, PlayerInstance.transform.position);
 

@@ -54,6 +54,12 @@ namespace HOG.Core
             }
 
             var saveData = JsonConvert.DeserializeObject<T>(saveJson);
+
+            if (saveData == null)
+            {
+                HOGDebug.LogError($"Failed to deserialize JSON to type {typeof(T)}");
+            }
+
             onComplete.Invoke(saveData);
         }
 

@@ -34,7 +34,7 @@ namespace HOG.GameLogic
     [Serializable]
     public struct HOGWave
     {
-        public float SpawnInterval;
+        public float SpawnRate;
         public int NumEnemies;
     }
 

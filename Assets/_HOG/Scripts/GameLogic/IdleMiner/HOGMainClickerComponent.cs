@@ -17,12 +17,14 @@ namespace  HOG.GameLogic
         public void OnMouseUpAsButton()
         {
             var power = GameLogic.UpgradeManager.GetPowerByIDAndLevel(clickUpgradeData.upgradableTypeID, clickUpgradeData.CurrentLevel);
-            
-            GameLogic.CurrencyManager.ChangeCurrencyByAmountByType(CurrencyTypes.MetalCurrency, power);
+
+            int currencyAmount = (int)power;
+
+            GameLogic.CurrencyManager.ChangeCurrencyByAmountByType(CurrencyTypes.MetalCurrency, currencyAmount);
 
             var scoreText = (HOGTweenScoreComponent) Manager.PoolManager.GetPoolable(PoolNames.ScoreToast);
             scoreText.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward * 5;
-            scoreText.Init(power);
+            scoreText.Init(currencyAmount);
         }
     }
 }

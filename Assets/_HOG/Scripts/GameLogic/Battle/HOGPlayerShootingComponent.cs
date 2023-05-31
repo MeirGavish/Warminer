@@ -14,7 +14,7 @@ namespace HOG.GameLogic
         [SerializeField]  protected float StartShootingDelay = 1;
 
         // TODO: Should be set from weapon/config
-        [SerializeField] protected float ShootingInterval = 1;
+        [SerializeField] protected float FireRate = 1;
 
         [SerializeField] protected HOGRangeComponent rangeComponent;
 
@@ -62,7 +62,7 @@ namespace HOG.GameLogic
 
             var damageUpgradeData = GameLogic.UpgradeManager.GetUpgradeableByID(UpgradeablesTypeID.DamageUpgrade);
 
-            spawnedProjectile.Damage = GameLogic.UpgradeManager.GetPowerByIDAndLevel
+            spawnedProjectile.Damage = (int)GameLogic.UpgradeManager.GetPowerByIDAndLevel
             (
                 UpgradeablesTypeID.DamageUpgrade, 
                 damageUpgradeData.CurrentLevel
@@ -97,7 +97,7 @@ namespace HOG.GameLogic
                     Shoot();
                 }
 
-                yield return new WaitForSeconds(ShootingInterval);
+                yield return new WaitForSeconds(1.0f/FireRate);
             }
         }
 
