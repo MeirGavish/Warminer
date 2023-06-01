@@ -9,9 +9,7 @@ namespace HOG.GameLogic
     {
         [SerializeField] protected GameObject ProjectileSpawn;
 
-        [SerializeField] protected GameObject ProjectileObject;
-
-        [SerializeField]  protected float StartShootingDelay = 1;
+        [SerializeField]  protected float StartShootingDelay = 0;
 
         // TODO: Should be set from weapon/config
         [SerializeField] protected float FireRate = 1;
@@ -27,9 +25,12 @@ namespace HOG.GameLogic
         void Awake()
         {
             rangeComponent.OnEnterRange = OnEnemyEnterRange;
-            AddListener(Core.HOGEventNames.OnEntityKilled, OnEnemyDestroyed);
-
             Manager.PoolManager.InitPool("PlayerProjectile", 10);
+        }
+
+        private void OnEnable()
+        {
+            AddListener(Core.HOGEventNames.OnEntityKilled, OnEnemyDestroyed);
         }
 
         private void OnDisable()
@@ -125,8 +126,7 @@ namespace HOG.GameLogic
                 return;
             }
 
-            GameObject newTarget;
-            enemyQueue.TryDequeue(out newTarget);
+            enemyQueue.TryDequeue(out GameObject newTarget);
             SetTarget(newTarget);
         }
     }
