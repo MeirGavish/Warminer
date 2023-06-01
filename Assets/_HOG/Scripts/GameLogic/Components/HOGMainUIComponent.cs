@@ -49,7 +49,7 @@ namespace  HOG.GameLogic
             CurrencyTypes currencyType  = currencyEventData.Item1;
             int currencyVal = currencyEventData.Item2;
 
-            CurrencyTexts[Array.IndexOf(CurrencyTypesOfTexts, currencyType)].text = currencyVal.ToString("N0");
+            CurrencyTexts[Array.IndexOf(CurrencyTypesOfTexts, currencyType)].text = $"<sprite=0> {currencyVal.ToString("N0")}";
         }
         
         public void OnUpgradeClickPowerPressed()

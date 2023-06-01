@@ -24,14 +24,15 @@ namespace HOG.GameLogic
 
         void Awake()
         {
-            rangeComponent.OnEnterRange = OnEnemyEnterRange;
             Manager.PoolManager.InitPool("PlayerProjectile", 10);
         }
 
         private void OnEnable()
-        {
+        { 
             AddListener(Core.HOGEventNames.OnEntityKilled, OnEnemyDestroyed);
         }
+
+
 
         private void OnDisable()
         {
@@ -49,6 +50,7 @@ namespace HOG.GameLogic
 
         private void Start()
         {
+            rangeComponent.OnEnterRange = OnEnemyEnterRange;
             StartCoroutine(ShootingCoroutine());
         }
 
