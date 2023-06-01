@@ -32,7 +32,7 @@ namespace  HOG.GameLogic
                 CurrencyTypes currencyType = CurrencyTypesOfTexts[i];
                 int currencyVal = 0;
                 GameLogic.CurrencyManager.TryGetCurrencyByType(currencyType, out currencyVal);
-                CurrencyTexts[i].text = currencyVal.ToString("N0");
+                UpdateCurrencyText(CurrencyTexts[i], currencyVal);
             }
             
             AddListener(HOGEventNames.OnCurrencyChanged, OnCurrencyChanged);
@@ -49,9 +49,14 @@ namespace  HOG.GameLogic
             CurrencyTypes currencyType  = currencyEventData.Item1;
             int currencyVal = currencyEventData.Item2;
 
-            CurrencyTexts[Array.IndexOf(CurrencyTypesOfTexts, currencyType)].text = $"<sprite=0> {currencyVal.ToString("N0")}";
+            UpdateCurrencyText(CurrencyTexts[Array.IndexOf(CurrencyTypesOfTexts, currencyType)], currencyVal);
         }
         
+        private void UpdateCurrencyText(TMP_Text currencyText, int currencyVal)
+        {
+            currencyText.text = $"<sprite=0> {currencyVal.ToString("N0")}";
+        }
+
         public void OnUpgradeClickPowerPressed()
         {
             GameLogic.UpgradeManager.UpgradeItemByID(UpgradeablesTypeID.ClickPowerUpgrade);

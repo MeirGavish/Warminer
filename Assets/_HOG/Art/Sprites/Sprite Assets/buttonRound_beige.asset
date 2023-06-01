@@ -36,7 +36,7 @@ Material:
     - _UseUIAlphaClip: 0
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
-    - _Color: {r: 0.97665876, g: 0.9811321, b: 0.06016379, a: 1}
+    - _Color: {r: 1, g: 0.984478, b: 0.24056602, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &11400000
 MonoBehaviour:
@@ -90,7 +90,7 @@ MonoBehaviour:
       m_Width: 35
       m_Height: 38
       m_HorizontalBearingX: -10
-      m_HorizontalBearingY: 30
+      m_HorizontalBearingY: 32
       m_HorizontalAdvance: 35
     m_GlyphRect:
       m_X: 0
