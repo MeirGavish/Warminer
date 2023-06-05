@@ -23,26 +23,28 @@ namespace  HOG.GameLogic
         private void Start()
         {
             UpdateTexts();
-            UpdateButtonCurrencyChanged();
+            UpdateButtonInteractibility();
         }
 
         private void OnEnable()
         {
-            Manager.EventsManager.AddListener(HOGEventNames.OnCurrencyChanged, UpdateButtonCurrencyChangedAction);
+            Manager.EventsManager.AddListener(HOGEventNames.OnCurrencyChanged, UpdateButtonInteractibilityAction);
+            Manager.EventsManager.AddListener(HOGEventNames.OnUpgraded, UpdateButtonInteractibilityAction);
         }
 
         private void OnDisable()
         {
-            Manager.EventsManager.RemoveListener(HOGEventNames.OnCurrencyChanged, UpdateButtonCurrencyChangedAction);
+            Manager.EventsManager.RemoveListener(HOGEventNames.OnCurrencyChanged, UpdateButtonInteractibilityAction);
+            Manager.EventsManager.RemoveListener(HOGEventNames.OnUpgraded, UpdateButtonInteractibilityAction);
         }
 
-        private void UpdateButtonCurrencyChangedAction(object obj)
+        private void UpdateButtonInteractibilityAction(object obj)
         {
             // Wrapper to avoid having calls with an unused parameter
-            UpdateButtonCurrencyChanged();
+            UpdateButtonInteractibility();
         }
 
-        private void UpdateButtonCurrencyChanged()
+        private void UpdateButtonInteractibility()
         {
             HOGUpgradeableLevelData upgradableNextLevel = GameLogic.UpgradeManager.GetUpgradableDataAtNextLevel(UpgradeType);
 

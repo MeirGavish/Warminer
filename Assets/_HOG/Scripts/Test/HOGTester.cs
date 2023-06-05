@@ -7,8 +7,6 @@ namespace HOG.Test
 {
     public class HOGTester : HOGMonoBehaviour
     {
-        private Queue<HOGPoolable> poolsables = new();
-
         
         private void Start()
         {
@@ -26,22 +24,16 @@ namespace HOG.Test
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                var triangle = Manager.PoolManager.GetPoolable(PoolNames.TrianglePool);
-                poolsables.Enqueue(triangle);
-            }
-
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                var triangle = poolsables.Dequeue();
-                Manager.PoolManager.ReturnPoolable(triangle);
-            }
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 throw new Exception("test exception, ignore");
-            }    
+            }
+            
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+               //TODO: Debug cheats
+            }
         }
     }
 
