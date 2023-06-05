@@ -9,18 +9,8 @@ using UnityEngine.SceneManagement;
 
 namespace  HOG.GameLogic
 {
-    public class HOGMainUIComponent : HOGLogicMonoBehaviour
+    public class HOGSceneButtonComponent : HOGLogicMonoBehaviour
     {
-        public void OnUpgradeClickPowerPressed()
-        {
-            GameLogic.UpgradeManager.UpgradeItemByID(UpgradeablesTypeID.ClickPowerUpgrade);
-        }
-
-        public void OnUpgradeDamagePressed()
-        {
-            GameLogic.UpgradeManager.UpgradeItemByID(UpgradeablesTypeID.DamageUpgrade);
-        }
-
         public void LoadBattle()
         {
             SceneManager.LoadScene("BattleTD");
