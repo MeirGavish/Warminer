@@ -46,6 +46,12 @@ namespace  HOG.GameLogic
         {
             HOGUpgradeableLevelData upgradableNextLevel = GameLogic.UpgradeManager.GetUpgradableDataAtNextLevel(UpgradeType);
 
+            if (upgradableNextLevel == null)
+            {
+                buttonComponent.interactable = false;
+                return;
+            }
+
             GameLogic.CurrencyManager.TryGetCurrencyByType(upgradableNextLevel.CurrencyType, out int playerCurrencyAmount);
 
             buttonComponent.interactable = (playerCurrencyAmount >= upgradableNextLevel.CurrencyAmountNeeded);
@@ -64,7 +70,15 @@ namespace  HOG.GameLogic
 
             NameText.text = GameLogic.UpgradeManager.GetHogUpgradeableConfigByID(UpgradeType).UserVisibleName;
             PowerText.text = upgradableCurrLevel.Power.ToString();
-            PriceText.text = $"<sprite=0>{upgradableNextLevel.CurrencyAmountNeeded:N0}";
+            if (upgradableNextLevel != null)
+            {
+                PriceText.text = $"<sprite=0>{upgradableNextLevel.CurrencyAmountNeeded:N0}";
+            }
+            else
+            {
+                PriceText.text = "-";
+            }
+            
         }
     }
 }

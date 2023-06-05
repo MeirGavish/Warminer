@@ -118,6 +118,7 @@ namespace HOG.GameLogic
             return config.UpgradableLevelData[data.CurrentLevel];
         }
 
+        // Returns null if next reached the last upgrade and next level doesn't exist
         public HOGUpgradeableLevelData GetUpgradableDataAtNextLevel(UpgradeablesTypeID typeID)
         {
             HOGUpgradeableData data = GetUpgradeableByID(typeID);
