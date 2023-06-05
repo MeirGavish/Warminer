@@ -124,10 +124,12 @@ namespace HOG.GameLogic
             HOGUpgradeableData data = GetUpgradeableByID(typeID);
             HOGUpgradeableConfig config = GetHogUpgradeableConfigByID(typeID);
 
-            if (data.CurrentLevel >= config.UpgradableLevelData.Count)
+            // Level is 1-based...
+            if (data.CurrentLevel >= config.UpgradableLevelData.Count - 1)
             {
                 return null;
             }
+
             return config.UpgradableLevelData[data.CurrentLevel + 1];
         }
     }
