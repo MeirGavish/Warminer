@@ -1,0 +1,70 @@
+
+using System;
+using DG.Tweening;
+using HOG.Core;
+using TMPro;
+using UnityEngine;
+using System.Linq;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+namespace  HOG.GameLogic
+{
+    public class HOGUpgradeButtonComponent : HOGLogicMonoBehaviour
+    {
+        [SerializeField] private UpgradeablesTypeID UpgradeType;
+
+        [SerializeField] private TMP_Text NameText;
+        [SerializeField] private TMP_Text PowerText;
+        [SerializeField] private TMP_Text PriceText;
+
+        [SerializeField] private Button buttonComponent;
+
+        private void Start()
+        {
+            UpdateTexts();
+            UpdateButtonCurrencyChanged();
+        }
+
+        private void OnEnable()
+        {
+            Manager.EventsManager.AddListener(HOGEventNames.OnCurrencyChanged, UpdateButtonCurrencyChangedAction);
+        }
+
+        private void OnDisable()
+        {
+            Manager.EventsManager.RemoveListener(HOGEventNames.OnCurrencyChanged, UpdateButtonCurrencyChangedAction);
+        }
+
+        private void UpdateButtonCurrencyChangedAction(object obj)
+        {
+            // Wrapper to avoid having calls with an unused parameter
+            UpdateButtonCurrencyChanged();
+        }
+
+        private void UpdateButtonCurrencyChanged()
+        {
+            HOGUpgradeableLevelData upgradableNextLevel = GameLogic.UpgradeManager.GetUpgradableDataAtNextLevel(UpgradeType);
+
+            GameLogic.CurrencyManager.TryGetCurrencyByType(upgradableNextLevel.CurrencyType, out int playerCurrencyAmount);
+
+            buttonComponent.interactable = (playerCurrencyAmount >= upgradableNextLevel.CurrencyAmountNeeded);
+        }
+
+        public void OnUpgradePressed()
+        {
+            GameLogic.UpgradeManager.UpgradeItemByID(UpgradeType);
+            UpdateTexts();
+        }
+
+        private void UpdateTexts()
+        {
+            HOGUpgradeableLevelData upgradableCurrLevel = GameLogic.UpgradeManager.GetUpgradableDataAtCurrLevel(UpgradeType);
+            HOGUpgradeableLevelData upgradableNextLevel = GameLogic.UpgradeManager.GetUpgradableDataAtNextLevel(UpgradeType);
+
+            NameText.text = GameLogic.UpgradeManager.GetHogUpgradeableConfigByID(UpgradeType).UserVisibleName;
+            PowerText.text = upgradableCurrLevel.Power.ToString();
+            PriceText.text = $"<sprite=0>{upgradableNextLevel.CurrencyAmountNeeded:N0}";
+        }
+    }
+}

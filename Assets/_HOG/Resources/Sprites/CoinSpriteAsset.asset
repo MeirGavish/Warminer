@@ -48,10 +48,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
-  m_Name: buttonRound_beige
+  m_Name: CoinSpriteAsset
   m_EditorClassIdentifier: 
   hashCode: -908979001
-  material: {fileID: -2383590825186961476}
+  material: {fileID: 2100000, guid: 47abb968feb590d4f8e524a3d9accd8a, type: 2}
   materialHashCode: 0
   m_Version: 1.1.0
   m_FaceInfo:

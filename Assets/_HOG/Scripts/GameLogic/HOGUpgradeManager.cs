@@ -11,7 +11,6 @@ namespace HOG.GameLogic
         public HOGPlayerUpgradeInventoryData PlayerUpgradeInventoryData; //Player Saved Data
         public HOGUpgradeManagerConfig UpgradeConfig = new(); //From cloud
 
-        //MockData
         //Load From Save Data On Device
         //Load Config From cloud
         public HOGUpgradeManager()
@@ -111,8 +110,28 @@ namespace HOG.GameLogic
         {
             return GetPowerByIDAndLevel(typeID, GetUpgradeableByID(typeID).CurrentLevel);
         }
+
+        public HOGUpgradeableLevelData GetUpgradableDataAtCurrLevel(UpgradeablesTypeID typeID)
+        {
+            HOGUpgradeableData data = GetUpgradeableByID(typeID);
+            HOGUpgradeableConfig config = GetHogUpgradeableConfigByID(typeID);
+            return config.UpgradableLevelData[data.CurrentLevel];
+        }
+
+        public HOGUpgradeableLevelData GetUpgradableDataAtNextLevel(UpgradeablesTypeID typeID)
+        {
+            HOGUpgradeableData data = GetUpgradeableByID(typeID);
+            HOGUpgradeableConfig config = GetHogUpgradeableConfigByID(typeID);
+
+            if (data.CurrentLevel >= config.UpgradableLevelData.Count)
+            {
+                return null;
+            }
+            return config.UpgradableLevelData[data.CurrentLevel + 1];
+        }
     }
     
+
     //Per Player Owned Item
     [Serializable]
     public class HOGUpgradeableData
@@ -123,12 +142,11 @@ namespace HOG.GameLogic
 
     //Per Level in Item config
     [Serializable]
-    public struct HOGUpgradeableLevelData
+    public class HOGUpgradeableLevelData
     {
         public int Level;
         public int CurrencyAmountNeeded;
         public CurrencyTypes CurrencyType;
-        public string ArtItem;
         public float Power;   
     }
 
@@ -137,6 +155,7 @@ namespace HOG.GameLogic
     public class HOGUpgradeableConfig
     {
         public UpgradeablesTypeID UpgradableTypeID;
+        public string UserVisibleName;
         public List<HOGUpgradeableLevelData> UpgradableLevelData;
     }
 
@@ -154,6 +173,7 @@ namespace HOG.GameLogic
         public List<HOGUpgradeableData> Upgradeables;
     }
 
+    // Don't forget to update GetUpgradeName when adding upgrade types
     [Serializable]
     public enum UpgradeablesTypeID
     {
@@ -161,4 +181,5 @@ namespace HOG.GameLogic
         DamageUpgrade,
         FireRateUpgrade
     }
+
 }

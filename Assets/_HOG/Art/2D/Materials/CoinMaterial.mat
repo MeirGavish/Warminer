@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: buttonRound_beige
+  m_Name: CoinMaterial
   m_Shader: {fileID: 4800000, guid: cf81c85f95fe47e1a27f6ae460cf182c, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -36,5 +36,5 @@ Material:
     - _UseUIAlphaClip: 0
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
-    - _Color: {r: 0.97665876, g: 0.9811321, b: 0.06016379, a: 1}
+    - _Color: {r: 0.9524162, g: 0.98039216, b: 0.058823533, a: 1}
   m_BuildTextureStacks: []

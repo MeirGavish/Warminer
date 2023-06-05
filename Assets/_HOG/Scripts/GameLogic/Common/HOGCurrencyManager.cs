@@ -7,7 +7,7 @@ namespace HOG.GameLogic
 {
     public class HOGCurrencyManager
     {
-        public HOGPlayerCurrencyData PlayerCurrencyData;
+        private HOGPlayerCurrencyData PlayerCurrencyData;
 
         public HOGCurrencyManager()
         {
@@ -32,8 +32,9 @@ namespace HOG.GameLogic
 
         public void SetCurrencyByType(CurrencyTypes type, int amount = 0)
         {
-            HOGManager.Instance.EventsManager.InvokeEvent(HOGEventNames.OnCurrencyChanged, (type, amount));
             PlayerCurrencyData.CurrencyByType[type] = amount;
+
+            HOGManager.Instance.EventsManager.InvokeEvent(HOGEventNames.OnCurrencyChanged, (type, amount));
 
             HOGManager.Instance.SaveManager.Save(PlayerCurrencyData);
         }
@@ -67,6 +68,7 @@ namespace HOG.GameLogic
             HOGManager.Instance.CrashManager.LogBreadcrumb($"User doesn't have enough currency of type {currencyType.ToString()}");
             return hasEnough;
         }
+
     }
 
     public class HOGPlayerCurrencyData : IHOGSaveData
