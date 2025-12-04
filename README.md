@@ -7,6 +7,7 @@ The concept is that the clicker and tower defense mechanics feed into each other
 You gain clicker "metal" currency by mining it and you can use it to buy upgrades for the tower defense. 
 From the tower defense you gain currency by defeating enemies and you can use it to buy upgrades for the clicker.
 
+Assets from [Kenney](https://kenney.nl) used under Creative Commons CC0 license.
 
 
 https://github.com/user-attachments/assets/daa78da6-8d97-4bff-95eb-876a80442d85
